@@ -6,7 +6,7 @@
 /*   By: lwidmer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:22:08 by lwidmer           #+#    #+#             */
-/*   Updated: 2023/06/07 15:40:53 by lwidmer          ###   ########.fr       */
+/*   Updated: 2023/06/22 18:16:30 by lwidmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,14 @@ int		GetIndexOfLowestTimestamp(const std::vector<Contact> contacts)
 	return (LowestTimestamp.index);
 }
 
+std::string	adjStringToTen(std::string str)
+{
+	if (str.length() >= 10)
+		return (str.substr(0, 9) + ".");
+	else
+		return (str.append(10 - str.length(), ' '));
+}
+
 class PhoneBook 
 {
 public:
@@ -114,7 +122,12 @@ public:
 	{
 		for (Contact c : contacts)
 		{
-			std::cout << c.index << c.FirstName << std::put_time(const_cast<std::tm*>(&c.timestamp), "%Y-%m-%d %H:%M:%S") << std::endl;
+			std::cout	<< adjStringToTen(std::to_string(c.index))	<< "|"
+						<< adjStringToTen(c.FirstName) 				<< "|"
+						//<< adjStringToTen(c.LastName) 				<< "|"
+						//<< adjStringToTen(c.NickName) 				<< "|"
+						<< std::endl;
+						//<< std::put_time(const_cast<std::tm*>(&c.timestamp), "%Y-%m-%d %H:%M:%S") 
 		}
 	};
 	void ReplaceContactByIndex(const Contact NewContact)
