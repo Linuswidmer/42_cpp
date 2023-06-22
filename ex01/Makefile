@@ -2,7 +2,7 @@ NAME=phonebook.exec
 
 all: ${NAME}
 
-name:
+${NAME}:
 	g++ phonebook.cpp -o ${NAME}
 
 clean:
