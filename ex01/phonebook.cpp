@@ -93,8 +93,13 @@ class PhoneBook
 		DisplayAllContacts();
 	};
 
-	void DisplayAllContacts(void)
+	int DisplayAllContacts(void)
 	{
+		if (index == 0)
+		{
+			std::cout << "you have no friends:(" << std::endl;
+			return (1);
+		}
 		for (int i = 0; i < index && i < 8; i++)
 		{
 			std::cout	<< i << "         "								<< "|"
@@ -103,6 +108,25 @@ class PhoneBook
 						<< adjStringToTen(ContactArray[i].NickName) 	<< "|"
 						<< std::endl;
 		}
+		return (0);
+	};
+	int DisplayContact(int num)
+	{
+		if (index < 8 && num > index)
+		{
+			std::cout << "invalid index" << std::endl;
+			return (1);
+		}
+		for (int i = 0; i < index && i < 8; i++)
+		{
+			std::cout	<< ContactArray[i].FirstName		<< std::endl
+						<< ContactArray[i].LastName			<< std::endl
+						<< ContactArray[i].NickName			<< std::endl
+						<< ContactArray[i].PhoneNumber		<< std::endl
+						<< ContactArray[i].DarkestSecret	<< std::endl
+						<< std::endl;
+		}
+		return (0);
 	};
 };
 
@@ -124,6 +148,7 @@ int	display_prompts(void)
 int main()
 {
 	int						exit;
+	int						input_index;
 	std::string				input;	
 	PhoneBook 				phonebook;
 
@@ -135,8 +160,15 @@ int main()
 			phonebook.Add();
 		else if (input == "SEARCH")
 		{
-			phonebook.Search();
-			// Prompt for one specific contact
+			if (!phonebook.DisplayAllContacts())
+			{
+				std::cout << "Type index to display complete entry ";
+				std::cin >> input_index;
+				if (input_index < 0 || input_index > 8)
+					std::cout << "index out of bound, type number between 0 and 9" << std::endl;
+				else
+					phonebook.DisplayContact(input_index);
+			}
 		}
 		else if (input == "EXIT")
 			break ;
