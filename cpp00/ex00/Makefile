@@ -9,9 +9,23 @@
 #    Updated: 2023/06/07 11:12:01 by lwidmer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+NAME = megaphone
+SRCS = Megaphone.cpp 
+CFLAGS = -Wall -Werror -Wextra -std=c++98
+OBJS = $(SRCS:.cpp=.o) 
 
-mega:
-	c++ -Wall -Werror -Wextra -std=c++98 megaphone.cpp -o megaphone
+all: $(NAME)
 
-mega2:
-	rm megaphone ; c++ 2_megaphone.cpp -o megaphone
+$(NAME): $(OBJS)
+	c++ $(CFLAGS) $(OBJS)-o $(NAME)
+
+%.o: %.cpp
+	c++ $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(NAME)
+
+fclean: clean
+	rm -f $(OBJS)
+
+re: fclean all
