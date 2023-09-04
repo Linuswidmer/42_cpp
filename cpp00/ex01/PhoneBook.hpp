@@ -8,12 +8,10 @@
 
 class PhoneBook 
 {
-// Default constructor
+
 public:
-		PhoneBook(){
-			this->index = 0;
-		}
-		int 		index;	
+	int 		index;	
+	PhoneBook(void);
 
 	void	display_prompts();
 	void	add_contact();

@@ -49,6 +49,8 @@
         "chrono": "cpp",
         "ctime": "cpp",
         "deque": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "ratio": "cpp",
+        "sstream": "cpp"
     }
 }

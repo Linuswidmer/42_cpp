@@ -7,17 +7,10 @@
 class Contact 
 {
 	public:
-	// Default constructor for the Contact class
-	Contact() :  _FirstName(""), _LastName(""), _NickName(""),
-			_PhoneNumber(""), _DarkestSecret("") {
-    }
-	// To add a new contact
+	Contact();
 	Contact(const std::string& FirstName, const std::string& LastName, 
 			const std::string& NickName, const std::string& PhoneNumber,
-			const std::string& DarkestSecret)
-			: _FirstName(FirstName), _LastName(LastName), _NickName(NickName),
-			_PhoneNumber(PhoneNumber), _DarkestSecret(DarkestSecret) {
-    };
+			const std::string& DarkestSecret);
 
 	std::string get_first_name() const;
     std::string get_last_name() const;

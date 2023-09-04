@@ -1,10 +1,11 @@
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
 
 #include "Weapon.hpp"
 
-class HumanA{
+class HumanB{
     public:
+        HumanB(void);
         void        attack(void);
 
     private:
