@@ -1,10 +1,23 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB()
-{}
+HumanB::HumanB(const char *name)
+{
+    this->_name = name;
+    this->_type = NULL;
+}
 
 void    HumanB::attack(void)
 {
-    std::cout << this->_name << " attacks with their weapon " << this->type.getType()
-            << std::endl;
+    if (this->_type)
+    {
+        std::cout << this->_name << " attacks with their weapon " << (*(this->_type)).getType()
+             << std::endl;
+    }
+    else
+        std::cout << this->_name << " attacks with theit bare hands" << std::endl;
+}
+
+void    HumanB::setWeapon(Weapon &newWeapon)
+{
+    this->_type = &newWeapon;
 }

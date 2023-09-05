@@ -5,12 +5,12 @@
 
 class HumanA{
     public:
-        HumanA(std::string& name, Weapon type);
+        HumanA(std::string name, Weapon &type);
         void        attack(void);
 
     private:
         std::string _name;
-        Weapon      type;
+        Weapon      &_type;
 };
 
 #endif
