@@ -4,6 +4,7 @@
 
 int main(void)
 {
+    // extra tests here
     {
         Weapon club = Weapon("crude spiked club");
         HumanA bob("Bob", club);

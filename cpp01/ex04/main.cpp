@@ -2,40 +2,44 @@
 #include <fstream>
 #include <string>
 
-int open_files(char *file_name, std::ifstream *infile, std::ofstream *outfile)
+void    find_and_replace(std::ifstream *input_file, std::ofstream *output_file, std::string find, std::string replace)
 {
-    std::string file_name_out(file_name);
+    unsigned long   start;
+    size_t          pos;
+    std::string     line;
 
-    file_name_out += ".replace";
-    const char* modifiedFilename = file_name_out.c_str();
-    (*infile).open(file_name);
-    (*outfile).open(modifiedFilename);
-    if ((*infile).fail() || (*outfile).fail())
-        return (1);
-    else
-        return (0);
+    start = 0;
+    while(std::getline(*input_file, line))
+    {
+        pos = line.find(find);
+        while (pos < line.size())
+        {
+            *output_file << line.substr(start, pos);
+            *output_file << replace;
+            line = line.substr(pos + find.size());
+            pos = line.find(find);
+        }
+        *output_file << line << std::endl;
+    }
 }
 
 int main(int argc, char **argv)
 {
+    if (argc != 4)
+    {
+        std::cerr << "USAGE: <filename> <string to find> <string to replace>" << std::endl;
+        return(1);
+    }
+    std::string     find(argv[2]);
+    std::string     replace(argv[3]);
     std::string     filename_in(argv[1]);
     std::string     filename_out = filename_in + ".replace";
     std::ifstream   input_file(filename_in.c_str());
     std::ofstream   output_file(filename_out.c_str());
-    std::string     line;
-
-    if (argc != 4)
+    if (find.empty())
     {
-        std::cout << "USAGE: <filename> <string to find> <string to replace>" << std::endl;
-        return(1);
+        std::cerr << "ERROR: string to find cannot be empty" << std::endl;
     }
-    // if (!open_files(argv[1], &input_file, &output_file))
-    // {
-    //     std::cerr << "ERROR: could not open file" << std::endl;
-    //     return (2);
-    // }
-    while (std::getline(input_file, line)) {
-        output_file << line << std::endl;
-    }
+    find_and_replace(&input_file, &output_file, find, replace);
     input_file.close();
 }

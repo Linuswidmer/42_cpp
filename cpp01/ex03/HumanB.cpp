@@ -14,7 +14,7 @@ void    HumanB::attack(void)
              << std::endl;
     }
     else
-        std::cout << this->_name << " attacks with theit bare hands" << std::endl;
+        std::cout << this->_name << " attacks with their bare hands" << std::endl;
 }
 
 void    HumanB::setWeapon(Weapon &newWeapon)
