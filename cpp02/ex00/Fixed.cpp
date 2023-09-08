@@ -31,7 +31,6 @@ Fixed& Fixed::operator=(const Fixed& other)
 Fixed::Fixed(void) :_fixed_point(0)
 {
     std::cout << "Defaut constructor called" << std::endl;
-    this->_fixed_point = 0;
 }
 
 Fixed::~Fixed()
