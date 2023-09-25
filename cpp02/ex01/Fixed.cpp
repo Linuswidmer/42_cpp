@@ -15,12 +15,12 @@ int    Fixed::getRawBits(void) const
 
 float   Fixed::toFloat(void) const
 {
-    return (float)_fixed_point / (1 << _fractional_bits);
+    return (float) _fixed_point / (1 << _fractional_bits);
 }
 
 int     Fixed::toInt(void) const
 {
-    return (_fixed_point >> _fractional_bits);
+    return ((int) _fixed_point >> _fractional_bits);
 }
 
 std::ostream& operator<<(std::ostream& o, Fixed const& rhs)
@@ -29,12 +29,14 @@ std::ostream& operator<<(std::ostream& o, Fixed const& rhs)
     return (o);
 }
 
-Fixed::Fixed(const int i) : _fixed_point(i << _fractional_bits)
+Fixed::Fixed(const int i) 
+    : _fixed_point(i << _fractional_bits)
 {
     std::cout << "Int constructor caled" << std::endl;
 }
 
-Fixed::Fixed(const float f) : _fixed_point(roundf(f * (1 << _fractional_bits)))
+Fixed::Fixed(const float f) 
+    : _fixed_point(roundf(f * (1 << _fractional_bits)))
 {
     std::cout << "Float constructor called" << std::endl;
 }

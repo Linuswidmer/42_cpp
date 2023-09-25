@@ -141,8 +141,15 @@ Fixed Fixed::operator--(int)
     return (tmp);
 }
 
-//static does not have to be defined here
 Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+    if (a < b)
+        return (a);
+    else
+        return (b);
+}
+
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
 {
     if (a < b)
         return (a);
@@ -160,7 +167,6 @@ Fixed& Fixed::max(Fixed& a, Fixed& b)
 
 const Fixed& Fixed::max(const Fixed& a,const Fixed& b)
 {
-    std::cout << "const max called" << std::endl;
     if (a > b)
         return (a);
     else
