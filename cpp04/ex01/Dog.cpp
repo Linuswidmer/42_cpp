@@ -5,6 +5,7 @@ Dog::Dog(void)
 {
     cout << "Dog: Constructor called" << endl;
     _type = "Dog";
+    _brain = new Brain();
 }
 
 
@@ -25,6 +26,7 @@ Dog&    Dog::operator=(const Dog &other)
     if (this != &other)
     {
             _type = other._type;
+            _brain = other._brain;
     }
     return (*this);
 }
@@ -32,4 +34,15 @@ Dog&    Dog::operator=(const Dog &other)
 void    Dog::makeSound(void) const
 {
     cout << "wooof" << endl;
+}
+
+void    Dog::newIdea(string idea)
+{
+    cout << "newIdea: " << idea << endl;
+    _brain->setIdea(idea);
+}
+
+void    Dog::tellIdea(void) const
+{
+    cout << _brain->getIdea() << endl;
 }

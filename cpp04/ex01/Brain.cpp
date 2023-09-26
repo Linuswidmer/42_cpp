@@ -1,14 +1,24 @@
 # include "Brain.hpp"
 
+string  Brain::getIdea(void) const
+{
+    return (_ideas[0]);
+}
+
+void    Brain::setIdea(const string idea)
+{
+    _ideas[0] = idea;
+}
+
 Brain::Brain(void)
 {
-    cout << "Brain constructor called" << endl;
+    std::cout << "Brain constructor called" << endl;
 }
 
 Brain::Brain(const Brain& copy)
 {
     cout << "Brain copy constructor called" << endl;
-    // here I would need to copy the brains??
+    (void)copy;
 }
 
 Brain& Brain::operator=(const Brain& other)
@@ -16,8 +26,10 @@ Brain& Brain::operator=(const Brain& other)
     cout << "Brain copy assignement called" << endl;
     if (this != &other) 
     {
-        // ????
+        for (size_t i = 0; i < _n_ideas; i++)
+            this->_ideas[i] = other._ideas[i];
     }
+    return (*this);
 }
 
 Brain::~Brain(void)

@@ -36,3 +36,12 @@ void    Animal::makeSound(void) const
 {
     cout << "indistinguishable animal Sounds" << endl;
 }
+
+void    Animal::newIdea(const string idea)
+{
+    (void)idea;
+}
+
+void    Animal::tellIdea(void) const
+{
+}

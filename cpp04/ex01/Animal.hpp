@@ -7,7 +7,7 @@ using namespace std;
 
 class Animal {
 protected:
-    string _type;
+    string  _type;
 
 public:
     Animal(void);
@@ -17,6 +17,8 @@ public:
 
     string          getType(void);
     virtual void    makeSound(void) const;
+    virtual void    newIdea(const string idea);
+    virtual void    tellIdea(void) const;
 };
 
 #endif

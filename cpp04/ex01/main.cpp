@@ -4,26 +4,29 @@
 
 int main(void)
 {
-    // test assigning a Cat to an animal object
+    {
+        cout << "TEST 1: Construction, Copy Construction and Assignement" << endl;
+        cout << "-------------------------------------------------------" << endl;
+        cout << "Construction" << endl;
+        Animal  *c = new Cat();
+        Animal  *d = new Dog();
 
-    Animal  *a = new Animal();
-    Animal  *c = new Cat();
-    //Cat     *c_copy = new Cat(*c);
-    Animal  *d = new Dog();
+        // Fill the cat with ideas
+        c->newIdea("fish is yummy");
+        c->tellIdea();
 
-    // base tests correct implementation
-    cout << endl << "Correct implementation:" << endl;
-    cout << a->getType() << endl;
-    cout << c->getType() << endl;
-    cout << d->getType() << endl;
-    a->makeSound();
-    c->makeSound();
-    d->makeSound();
+        cout << endl << "Copy assignement" << endl;
+        d = c;
+        // Interestingly enough this does not throw a compiler error
+        // I thought it would do so as I defined the copy assignement
+        // operator for cats and dogs with the brain, but not for animals.
+        // interestingly the copy assignment also works for assigning a cat to a dog.
+        d->tellIdea();
 
-    // copy constructor
-    //cout << c_copy->getType() << endl;
-    //c_copy->makeSound();
-    delete a;
-    delete c;
-    delete d;
+
+        cout << endl << "Destruction" << endl;
+        
+        delete c;
+        //delete c2;
+    }
 }
