@@ -42,14 +42,3 @@ void    Cat::makeSound(void) const
 {
     cout << "meow" << endl;
 }
-
-// void    Cat::newIdea(string idea)
-// {
-//     cout << "newIdea: " << idea << endl;
-//     _brain->setIdea(idea);
-// }
-
-// void    Cat::tellIdea(void) const
-// {
-//     cout << _brain->getIdea() << endl;
-// }

@@ -26,6 +26,9 @@ int main(void)
             d->makeSound();
             cout << d->getType() << endl;
 
+            cout << endl << "Copy Constructor: " << endl;
+            Animal c_copy = new Cat(*c);
+
             cout << endl << "Destruction" << endl;
             delete c;
             delete d;
