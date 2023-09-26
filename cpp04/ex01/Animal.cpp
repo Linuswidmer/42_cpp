@@ -11,6 +11,7 @@ Animal::Animal(const Animal &copy)
     : _type(copy._type)
 {
     cout << "Animal: Copy constructor called" << endl;
+    _brain = copy._brain;
 }
 
 Animal& Animal::operator=(const Animal &other)

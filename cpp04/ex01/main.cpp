@@ -27,11 +27,15 @@ int main(void)
             cout << d->getType() << endl;
 
             cout << endl << "Copy Constructor: " << endl;
-            Animal c_copy = new Cat(*c);
+            Animal *c_copy = new Animal(*c);
+            c_copy->tellIdea();
+            // what does not work is:
+            // Animal *c_copy = new Cat(*c)
 
             cout << endl << "Destruction" << endl;
             delete c;
             delete d;
+            delete c_copy;
         } 
         catch (const std::bad_alloc& e) 
         {
@@ -42,19 +46,19 @@ int main(void)
         {
             try
             {
-                Animal *animal_arr[10];
+                // Animal *animal_arr[10];
 
-                for(int i = 0; i < 10; i++)
-                {
-                    if (i % 2 == 0)
-                        animal_arr[i] = new Cat();
-                    else
-                        animal_arr[i] = new Dog();
-                }
-                for (int i = 0; i < 10; i++)
-                {
-                    delete animal_arr[i];
-                }
+                // for(int i = 0; i < 10; i++)
+                // {
+                //     if (i % 2 == 0)
+                //         animal_arr[i] = new Cat();
+                //     else
+                //         animal_arr[i] = new Dog();
+                // }
+                // for (int i = 0; i < 10; i++)
+                // {
+                //     delete animal_arr[i];
+                // }
             }
             catch(const bad_alloc& e)
             {
