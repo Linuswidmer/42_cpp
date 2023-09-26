@@ -5,7 +5,6 @@ Dog::Dog(void)
 {
     cout << "Dog: Constructor called" << endl;
     _type = "Dog";
-    _brain = new Brain();
 }
 
 
@@ -36,13 +35,13 @@ void    Dog::makeSound(void) const
     cout << "wooof" << endl;
 }
 
-void    Dog::newIdea(string idea)
-{
-    cout << "newIdea: " << idea << endl;
-    _brain->setIdea(idea);
-}
+// void    Dog::newIdea(string idea)
+// {
+//     cout << "newIdea: " << idea << endl;
+//     _brain->setIdea(idea);
+// }
 
-void    Dog::tellIdea(void) const
-{
-    cout << _brain->getIdea() << endl;
-}
+// void    Dog::tellIdea(void) const
+// {
+//     cout << _brain->getIdea() << endl;
+// }

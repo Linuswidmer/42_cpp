@@ -4,7 +4,7 @@
 
 class Dog: public Animal {
 private:
-    Brain   *_brain;
+    //Brain   *_brain;
 
 public:
     Dog(void);
@@ -13,8 +13,8 @@ public:
     Dog& operator=(const Dog& other);
 
     void    makeSound(void) const;
-    void    newIdea(string idea);
-    void    tellIdea(void) const;
+    //void    newIdea(string idea);
+    //void    tellIdea(void) const;
 };
 
 #endif

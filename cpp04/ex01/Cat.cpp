@@ -5,9 +5,14 @@ Cat::Cat(void)
 {
     cout << "Cat: Constructor called" << endl; 
     _type = "Cat";
-    _brain = new Brain();
-    // how can I check here if an allocation fails? 
-    // how can I terminate the program when it fails?
+    // try
+    // {
+    //     _brain = new Brain();   
+    // }
+    // catch(const bad_alloc& e)
+    // {
+    //     throw e;
+    // }
 }
 
 Cat::Cat(const Cat &copy)
@@ -30,7 +35,7 @@ Cat& Cat::operator=(const Cat &other)
 Cat::~Cat(void)
 {
     cout << "Cat: Destructor called" << endl;
-    delete _brain;
+    //delete _brain;
 }
 
 void    Cat::makeSound(void) const
@@ -38,13 +43,13 @@ void    Cat::makeSound(void) const
     cout << "meow" << endl;
 }
 
-void    Cat::newIdea(string idea)
-{
-    cout << "newIdea: " << idea << endl;
-    _brain->setIdea(idea);
-}
+// void    Cat::newIdea(string idea)
+// {
+//     cout << "newIdea: " << idea << endl;
+//     _brain->setIdea(idea);
+// }
 
-void    Cat::tellIdea(void) const
-{
-    cout << _brain->getIdea() << endl;
-}
+// void    Cat::tellIdea(void) const
+// {
+//     cout << _brain->getIdea() << endl;
+// }

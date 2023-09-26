@@ -4,6 +4,7 @@ Animal::Animal(void)
     : _type("Animal")
 {
     cout << "Animal: Constructor called" << endl;
+    _brain = new Brain();
 }
 
 Animal::Animal(const Animal &copy)
@@ -18,12 +19,14 @@ Animal& Animal::operator=(const Animal &other)
     if (this != &other)
     {
         _type = other._type;
+        *_brain =  * (other._brain);
     }
     return (*this);
 }
 
 Animal::~Animal(void)
 {
+    delete _brain;
     cout << "Animal: Destructor called" << endl;
 }
 
@@ -39,9 +42,11 @@ void    Animal::makeSound(void) const
 
 void    Animal::newIdea(const string idea)
 {
-    (void)idea;
+    cout << "newIdea: " << idea << endl;
+    _brain->setIdea(idea);
 }
 
 void    Animal::tellIdea(void) const
 {
+    cout << _brain->getIdea() << endl;
 }

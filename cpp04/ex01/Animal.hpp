@@ -8,6 +8,7 @@ using namespace std;
 class Animal {
 protected:
     string  _type;
+    Brain   *_brain;
 
 public:
     Animal(void);

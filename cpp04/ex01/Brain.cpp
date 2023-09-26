@@ -12,18 +12,18 @@ void    Brain::setIdea(const string idea)
 
 Brain::Brain(void)
 {
-    std::cout << "Brain constructor called" << endl;
+    std::cout << "Brain: constructor called" << endl;
 }
 
 Brain::Brain(const Brain& copy)
 {
-    cout << "Brain copy constructor called" << endl;
+    cout << "Brain: Copy constructor called" << endl;
     (void)copy;
 }
 
 Brain& Brain::operator=(const Brain& other)
 {
-    cout << "Brain copy assignement called" << endl;
+    cout << "Brain: Copy assignement called" << endl;
     if (this != &other) 
     {
         for (size_t i = 0; i < _n_ideas; i++)
