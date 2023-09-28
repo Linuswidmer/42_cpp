@@ -3,7 +3,7 @@
 WrongCat::WrongCat(void)
     : WrongAnimal()
 {
-    cout << "WrongCat: Constructor called" << endl; 
+    std::cout << "WrongCat: Constructor called" << std::endl; 
     _type = "WrongCat";
 }
 
@@ -11,12 +11,12 @@ WrongCat::WrongCat(void)
 WrongCat::WrongCat(const WrongCat &copy)
     :WrongAnimal(copy)
 {
-    cout << "WrongCat: Copy constructor called" << endl;
+    std::cout << "WrongCat: Copy constructor called" << std::endl;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat &other)
 {
-    cout << "WrongCat: Copy assignment called" << endl;
+    std::cout << "WrongCat: Copy assignment called" << std::endl;
     if (this != &other)
     {
         _type = other._type;
@@ -26,10 +26,10 @@ WrongCat& WrongCat::operator=(const WrongCat &other)
 
 WrongCat::~WrongCat(void)
 {
-    cout << "WrongCat: Destructor called" << endl;
+    std::cout << "WrongCat: Destructor called" << std::endl;
 }
 
 void    WrongCat::makeSound(void) const
 {
-    cout << "meow" << endl;
+    std::cout << "meow" << std::endl;
 }

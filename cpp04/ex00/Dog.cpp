@@ -3,20 +3,20 @@
 Dog::Dog(void)
     :Animal()
 {
-    cout << "Dog: Constructor called" << endl;
+    std::cout << "Dog: Constructor called" << std::endl;
     _type = "Dog";
 }
 
 
 Dog::~Dog(void)
 {
-    cout << "Dog: Destructor called" << endl;
+    std::cout << "Dog: Destructor called" << std::endl;
 }
 
 Dog::Dog(const Dog& copy)
     : Animal(copy)
 {
-    cout << "Dog: Copy constructor called" << endl;
+    std::cout << "Dog: Copy constructor called" << std::endl;
 }
 
 
@@ -31,5 +31,5 @@ Dog&    Dog::operator=(const Dog &other)
 
 void    Dog::makeSound(void) const
 {
-    cout << "wooof" << endl;
+    std::cout << "wooof" << std::endl;
 }

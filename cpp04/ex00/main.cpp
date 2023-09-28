@@ -14,10 +14,10 @@ int main(void)
     Animal  *d = new Dog();
 
     // base tests correct implementation
-    cout << endl << "Correct implementation:" << endl;
-    cout << a->getType() << endl;
-    cout << c->getType() << endl;
-    cout << d->getType() << endl;
+    std::cout << std::endl << "Correct implementation:" << std::endl;
+    std::cout << a->getType() << std::endl;
+    std::cout << c->getType() << std::endl;
+    std::cout << d->getType() << std::endl;
     a->makeSound();
     c->makeSound();
     d->makeSound();
@@ -29,12 +29,12 @@ int main(void)
     delete c;
     delete d;
 
-    cout << endl << "Incorrect implementation:" << endl;
+    std::cout << std::endl << "Incorrect implementation:" << std::endl;
     WrongAnimal *w_a = new WrongAnimal();
     WrongAnimal *w_c = new WrongCat();
 
-    cout << w_a->getType() << endl;
-    cout << w_c->getType() << endl;
+    std::cout << w_a->getType() << std::endl;
+    std::cout << w_c->getType() << std::endl;
     w_a->makeSound();
     w_c->makeSound();
 
