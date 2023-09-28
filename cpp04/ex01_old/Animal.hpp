@@ -3,10 +3,12 @@
 # include <string>
 # include <iostream>
 # include "Brain.hpp"
+using namespace std;
 
 class Animal {
 protected:
-    std::string  _type;
+    string  _type;
+    Brain   *_brain;
 
 public:
     Animal(void);
@@ -14,8 +16,10 @@ public:
     Animal(const Animal &copy);
     Animal& operator=(const Animal &other);
 
-    std::string          getType(void);
+    string          getType(void);
     virtual void    makeSound(void) const;
+    virtual void    newIdea(const string idea);
+    virtual void    tellIdea(void) const;
 };
 
 #endif

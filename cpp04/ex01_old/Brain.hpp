@@ -7,8 +7,7 @@ using namespace std;
 class Brain {
 private:
     static const size_t _n_ideas = 100; 
-    std::string         _ideas[_n_ideas];
-    size_t              _index_ideas;
+    string              _ideas[_n_ideas];
 
 public:
     Brain(void);
@@ -16,9 +15,8 @@ public:
     Brain& operator=(const Brain& other);
     ~Brain(void);
 
-    const std::string   getIdea(size_t i) const;
-    void                setIdea(const std::string idea);
-    size_t              index_ideas(void) const;
+    string  getIdea(void) const;
+    void    setIdea(const string idea);
 };
 
 #endif

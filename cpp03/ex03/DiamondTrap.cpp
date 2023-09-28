@@ -12,14 +12,15 @@ DiamondTrap::DiamondTrap (const string& name)
 {
     cout << "DiamondTrap " << name << ": Constructor called" << endl;
     _name = name;
-    this->hit_points(FragTrap::hit_points());
-    this->energy_points(ScavTrap::energy_points());
-    this->attack_damage(FragTrap::attack_damage());
+    this->_hit_points = FragTrap::_hit_points;
+    this->_energy_points =  ScavTrap::_energy_points;
+    this->_attack_damage = FragTrap::_attack_damage;
+    // this->hit_points(11);
 }
 
 DiamondTrap::~DiamondTrap(void)
 {
-cout << "DiamondTrap " << _name << ": Destructor called" << endl;
+    cout << "DiamondTrap " << _name << ": Destructor called" << endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& copy)

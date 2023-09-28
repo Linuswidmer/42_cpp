@@ -6,12 +6,13 @@ using namespace std;
 
 class ClapTrap {
 private:
+    
+protected:
     string _name;
     int     _hit_points;
     int     _energy_points;
     int     _attack_damage;
 
-protected:
     //setters
     void name(string name);
     void hit_points(int hp);

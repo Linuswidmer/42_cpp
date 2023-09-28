@@ -1,33 +1,43 @@
 # include "Brain.hpp"
 
-string  Brain::getIdea(void) const
+const std::string  Brain::getIdea(size_t i) const
 {
-    return (_ideas[0]);
+    return (_ideas[i]);
 }
 
-void    Brain::setIdea(const string idea)
+size_t  Brain::index_ideas(void) const
 {
-    _ideas[0] = idea;
+    return (_index_ideas);
+}
+
+void    Brain::setIdea(const std::string idea)
+{
+    _ideas[_index_ideas % 100] = idea;
+    _index_ideas++;
 }
 
 Brain::Brain(void)
+    : _index_ideas(0)
 {
-    std::cout << "Brain: constructor called" << endl;
+    std::cout << "Brain: constructor called" << std::endl;
 }
 
 Brain::Brain(const Brain& copy)
+    : _index_ideas(copy.index_ideas())
 {
-    cout << "Brain: Copy constructor called" << endl;
-    (void)copy;
+    std::cout << "Brain: Copy constructor called" << std::endl;
+    for (size_t i = 0; i < _n_ideas; i++)
+            this->_ideas[i] = copy._ideas[i];
 }
 
 Brain& Brain::operator=(const Brain& other)
 {
-    cout << "Brain: Copy assignement called" << endl;
-    if (this != &other) 
+    std::cout << "Brain: Copy assignement called" << std::endl;
+    _index_ideas = other.index_ideas();
+    if (this != &other)
     {
         for (size_t i = 0; i < _n_ideas; i++)
-            this->_ideas[i] = other._ideas[i];
+            this->_ideas[i] = other.getIdea(i);
     }
     return (*this);
 }
