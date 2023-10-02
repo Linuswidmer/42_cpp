@@ -10,9 +10,6 @@ int main(void)
         std::cout << "Construction" << std::endl;
         try
         {
-            // this is now not allowed
-            // Animal a = new Animal();
-
             std::cout << "CONSTRUCTION" << std::endl;
             Animal  *c = new Cat();
             Animal  *c2 = new Cat();
@@ -30,7 +27,6 @@ int main(void)
             std::cout << "IDEAS" << std::endl;
             dynamic_cast<Cat*>(c)->tellIdea();
             dynamic_cast<Cat*>(c2)->tellIdea();
-
 
             std::cout << std::endl << "COPY CONSTRUCTOR" << std::endl;
             Cat *c_copy = new Cat(* dynamic_cast<Cat*>(c));

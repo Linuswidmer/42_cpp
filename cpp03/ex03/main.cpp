@@ -4,26 +4,18 @@
 
 int main(void)
 {
+    std::cout << "CONTRUCTORS" << std::endl;
     DiamondTrap d("d");
-    //DiamondTrap d_copy(d);
-    // ScavTrap    s("scavvy");
-    //ScavTrap    s_copy(s);
-    //FragTrap    f("fraggy");
-    //FragTrap    f_copy(f);
 
-    cout << d;
-    d.beRepaired(20);
-    cout << d;
-    //cout << d;
-    //d.attack("hello");
-    //cout << f;
-    //f.takeDamage(50);
-    //cout << f;
-    //f_copy = f;
-    //cout << f_copy;
+    std::cout << std::endl << "MEMEBER FUNCTIONS" << std::endl;
+    d.stats();
+    d.attack("hello");
+    d.whoAmI();
 
-    //cout << d;
-    //s_copy.attack("hello");
-    //d.attack("aaaaa");
-    //d.whoAmI();
+    std::cout << std::endl << "COPY AND ASSIGNEMENT" << std::endl;
+    DiamondTrap d_copy(d);
+    d.stats();
+    d_copy = d;
+       
+    std::cout << std::endl << "DESTRUCTION" << std::endl;
 }

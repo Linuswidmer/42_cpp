@@ -2,44 +2,47 @@
 
 void    FragTrap::highFiveGuys(void)
 {
-    cout << "FragTrap " << this->name() << " gives high five"<< endl;
+    std::cout << "FragTrap " << _name << " gives high five"<< std::endl;
 }
 
-FragTrap::FragTrap(const string &name)
+FragTrap::FragTrap(void)
+{
+    _name = "default";
+    _hit_points = 100;
+    _energy_points = 100;
+    _attack_damage = 30;
+    std::cout << "FragTrap " << _name << " Constructor called" << std::endl;
+}
+
+FragTrap::FragTrap(const std::string &name)
     :ClapTrap(name)
 {
-    cout << "FragTrap " << this->name() << " Constructor called" << endl;
-    this->hit_points(100);
-    this->energy_points(100);
-    this->attack_damage(30);
+    std::cout << "FragTrap " << _name << " Constructor called" << std::endl;
+    _hit_points = 100;
+    _energy_points = 100;
+    _attack_damage = 30;
 }
 
 FragTrap::~FragTrap(void)
 {
-    cout << "FragTrap " << this->name() << ": Destructor called" << endl;
+    std::cout << "FragTrap " << _name << ": Destructor called" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap& copy)
     : ClapTrap(copy)
 {
-    cout << "FragTrap Copy constructor called" << endl;
+    std::cout << "FragTrap Copy constructor called" << std::endl;
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& other)
 {
-    cout << "FragTrap Copy assginment constructor called" << endl;
+    std::cout << "FragTrap Copy assginment constructor called" << std::endl;
     if (this != &other) 
     {
-        this->name(other.name());
-        this->hit_points(other.hit_points());
-        this->energy_points(other.energy_points());
-        this->attack_damage(other.attack_damage());
+        _name = other._name;
+        _hit_points = other._hit_points;
+        _energy_points = other._energy_points;
+        _attack_damage = other._attack_damage;
     }
     return *this;
-}
-
-std::ostream& operator<<(std::ostream& o, const FragTrap& rhs)
-{
-    o << static_cast<const ClapTrap&>(rhs);
-    return (o);
 }

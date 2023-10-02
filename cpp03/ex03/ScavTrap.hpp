@@ -2,17 +2,23 @@
 # define SCAVTRAP_H
 # include "ClapTrap.hpp"
 
-class ScavTrap : public virtual ClapTrap {
-public:
-    ScavTrap(const string& name);
-    ScavTrap(const ScavTrap& copy);
-    ~ScavTrap(void);
+class ScavTrap : virtual public ClapTrap {
+protected:
+    std::string _name;
+    int         _hit_points;
+    int         _energy_points;
+    int         _attack_damage;
 
-    void attack(const std::string& target);
+public:
+    ScavTrap(void);
+    ScavTrap(const std::string& name);
+    ScavTrap(const ScavTrap& copy);
+    virtual ~ScavTrap(void);
+
+    virtual void    attack(const std::string& target);
     void    guardGate(void);
 
     ScavTrap& operator=(const ScavTrap& other);
-    friend std::ostream& operator<<(std::ostream& o, const ScavTrap& rhs);
 
 private:
     bool    _guard_status;

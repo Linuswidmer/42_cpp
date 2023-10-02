@@ -1,6 +1,6 @@
 NAME  = ./diamondtrap
 SRCS = main.cpp ClapTrap.cpp FragTrap.cpp DiamondTrap.cpp ScavTrap.cpp
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra -std=c++98 -Wshadow
 OBJS = $(SRCS:.cpp=.o) 
 
 all: $(NAME)
