@@ -4,6 +4,8 @@
 # include <string>
 # include <iostream>
 
+class ICharacter;
+
 # include "AMateria.hpp"
 # include "IMateriaSource.hpp"
 # include "MateriaSource.hpp"

@@ -1,7 +1,24 @@
 # include "header.h"
 
-Ice::Ice(std::string const &type)
-    : AMateria(type)
+void    Ice::use(ICharacter &target)
 {
-    std::cout << "Ice: Constructor called" << std::endl;
+    std::cout   << "shoots an ice bolt at " << target.getName()
+                << std::endl; 
+}
+
+AMateria*   Ice::clone(void) const
+{
+    std::cout << "Ice Materia cloned" << std::endl;
+    return (new Ice());
+}
+
+Ice::Ice(void)
+    :AMateria("ice")
+{
+    std::cout << "Ice: Default constructor called" << std::endl;
+}
+
+Ice::~Ice(void)
+{
+    std::cout << "Ice: Destructor called" << std::endl;
 }

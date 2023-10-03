@@ -5,16 +5,16 @@
 
 class Ice: public AMateria
 {
-private:
-
 public:
-    Ice(std::string const& type);
+    Ice(void);
     Ice(const Ice& copy);
     Ice &operator=(const Ice& other);
     ~Ice(void);
 
-    AMateria* clone() const;
-    // virtual void use(ICharacter& target);
+    AMateria* clone() const; // override
+    void use(ICharacter& target); //override
+private:
+
 };
 
 #endif
