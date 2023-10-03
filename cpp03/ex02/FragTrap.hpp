@@ -2,18 +2,21 @@
 # define FRAGTRAP_H
 # include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap {
+class FragTrap : virtual public ClapTrap {
+protected:
+    std::string _name;
+
 public:
-    FragTrap(const string& name);
+    FragTrap(void);
+    FragTrap(const std::string& name);
     FragTrap(const FragTrap& copy);
-    ~FragTrap(void);
+    virtual ~FragTrap(void);
 
     void    highFiveGuys(void);
+    void    stats(void) const;
 
     FragTrap& operator=(const FragTrap& other);
-    friend std::ostream& operator<<(std::ostream& o, const FragTrap& rhs);
 
 private:
-    bool    _guard_status;
 };
 #endif

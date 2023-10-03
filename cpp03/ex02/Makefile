@@ -1,5 +1,5 @@
-NAME  = ./flagtrap
-SRCS = main.cpp ClapTrap.cpp FlagTrap.cpp
+NAME  = ./fragtrap
+SRCS = main.cpp ClapTrap.cpp FragTrap.cpp
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 OBJS = $(SRCS:.cpp=.o) 
 

@@ -63,3 +63,12 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
     }
     return *this;
 }
+
+void    ScavTrap::stats(void) const
+{
+    std::cout << "ScavTrap stats called" << std::endl;
+    std::cout << "hit points: " << _hit_points << std::endl
+        << "energy points: " << _energy_points << std::endl
+        << "attack_damage: " << _attack_damage << std::endl
+        << "guard_status: " << _guard_status << std::endl;
+}

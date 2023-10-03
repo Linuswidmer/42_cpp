@@ -1,15 +1,21 @@
 #include "ClapTrap.hpp"
-#include "FlagTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void)
 {
-    ClapTrap c("clappy");
-    cout << c << endl;
-    FlagTrap f("flaggy");
-    cout << f << endl;
+    std::cout << "CONTRUCTORS" << std::endl;
+    FragTrap f("flaggy");
+
+    std::cout << std::endl << "MEMEBER FUNCTIONS" << std::endl;
     f.takeDamage(20);
-    FlagTrap t(f);
     f.attack("enemy");
     f.highFiveGuys();
-    cout << f << endl;
+    f.stats();
+
+
+    std::cout << std::endl << "COPY AND ASSIGNEMENT" << std::endl;
+    FragTrap t(f);
+    t.stats();
+
+    std::cout << std::endl << "DESTRUCTION" << std::endl;
 }

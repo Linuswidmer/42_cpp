@@ -16,6 +16,7 @@ public:
     virtual ~FragTrap(void);
 
     void    highFiveGuys(void);
+    void    stats(void) const;
 
     FragTrap& operator=(const FragTrap& other);
 

@@ -15,7 +15,7 @@ int main(void)
     std::cout << std::endl << "COPY AND ASSIGNEMENT" << std::endl;
     DiamondTrap d_copy(d);
     d.stats();
-    d_copy = d;
+    // d_copy = d;
        
     std::cout << std::endl << "DESTRUCTION" << std::endl;
 }

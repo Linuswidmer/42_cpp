@@ -3,57 +3,74 @@
 void    ScavTrap::attack(const std::string& target)
 {
     if (_energy_points <= 0)
-        cout << "ScavTrap " << _name << " has no energy points left" << endl;
+        std::cout << "ScavTrap " << _name << " has no energy points left" << std::endl;
     else if (_hit_points <= 0)
-        cout << "ScavTrap " << _name << " is dead" << endl;
+        std::cout << "ScavTrap " << _name << " is dead" << std::endl;
     else
     {
-        _energy_points--;
-        cout << "ScavTrap " << _name << " attacks " << target <<
-            ", causing " << _attack_damage << " points of damage" << endl; 
+        _energy_points = _energy_points -1;
+        std::cout << "ScavTrap " << _name << " attacks " << target <<
+            ", causing " << _attack_damage << " points of damage" << std::endl; 
     }
 }
 
 void    ScavTrap::guardGate(void)
 {
-    cout << "ScavTrap is now in guard mode" << endl;
+    std::cout << "ScavTrap is now in guard mode" << std::endl;
     _guard_status = true;
 }
 
-ScavTrap::ScavTrap(const string &name)
-    :ClapTrap(name), _guard_status(false)
+ScavTrap::ScavTrap(void)
 {
-    cout << "ScavTrap " << _name << " Constructor called" << endl;
+    this->_name = "default";
+    std::cout << "ScavTrap " << "default" << " Constructor called" << std::endl;
+    _hit_points = 100;
+    _energy_points = 50;
+    _attack_damage = 20;
+}
+
+
+ScavTrap::ScavTrap(const std::string &name)
+    :ClapTrap(), _guard_status(false)
+{
+    _name = name;
+    std::cout << "ScavTrap " << name << " Constructor called" << std::endl;
+    _hit_points = 100;
+    _energy_points = 50;
+    _attack_damage = 20;
 }
 
 ScavTrap::~ScavTrap(void)
 {
-    cout << "ScavTrap " << _name << ": Destructor called" << endl;
+    std::cout << "ScavTrap " << _name << ": Destructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& copy)
     : ClapTrap(copy)
 {
-    cout << "ScavTrap Copy constructor called" << endl;
+    std::cout << "ScavTrap Copy constructor called" << std::endl;
 }
 
-// test this...
 ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
-    cout << "ScavTrap Copy assginment constructor called" << endl;
+    std::cout << "ScavTrap Copy assginment constructor called" << std::endl;
     if (this != &other) 
     {
         _name = other._name;
         _hit_points = other._hit_points;
         _energy_points = other._energy_points;
         _attack_damage = other._attack_damage;
+        _guard_status = other._guard_status;
     }
     return *this;
 }
 
-std::ostream& operator<<(std::ostream& o, const ScavTrap& rhs)
+void    ScavTrap::stats(void) const
 {
-    o << static_cast<const ClapTrap&>(rhs);
-    o << "guard_status: " << rhs._guard_status << endl;
-    return (o);
+    std::cout << "ScavTrap stats called" << std::endl;
+    std::cout << "hit points: " << _hit_points << std::endl
+        << "energy points: " << _energy_points << std::endl
+        << "attack_damage: " << _attack_damage << std::endl
+        << "guard_status: " << _guard_status << std::endl;
 }
+
