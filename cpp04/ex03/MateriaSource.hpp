@@ -7,8 +7,8 @@ class MateriaSource: public IMateriaSource
 {
 public:
     MateriaSource(void);
-    // Copy Constructor
-    // Copy Assignment
+    MateriaSource(const MateriaSource &copy);
+    MateriaSource& operator=(const MateriaSource &other);
     ~MateriaSource(void);
 
     void        learnMateria(AMateria *materia); //override

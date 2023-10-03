@@ -2,5 +2,6 @@
 
 ICharacter::~ICharacter()
 {
-    std::cout << "ICharacter: Destructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "ICharacter: Destructor called" << std::endl;
 }

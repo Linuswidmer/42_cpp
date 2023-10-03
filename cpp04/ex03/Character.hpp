@@ -8,7 +8,7 @@ public:
     Character(void);
     Character(const std::string& name);
     Character(const Character &copy);
-    // assignment operator
+    Character& operator=(const Character &other);
     ~Character(void);
 
     std::string const&  getName(void) const; //override
@@ -20,6 +20,9 @@ private:
     std::string _name;
     int         _index_arr_materias;
     AMateria*   _arr_materias[4];
+    AMateria*   _clone_record[100];
+    AMateria*   save;
+    int         _index_clone_record;
 };
 
 #endif

@@ -3,8 +3,11 @@
 
 # include <string>
 # include <iostream>
+# include "string.h"
 
-class ICharacter;
+class ICharacter; // forward declaration needed
+
+# define DEBUG 0
 
 # include "AMateria.hpp"
 # include "IMateriaSource.hpp"

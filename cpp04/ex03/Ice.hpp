@@ -14,7 +14,6 @@ public:
     AMateria* clone() const; // override
     void use(ICharacter& target); //override
 private:
-
 };
 
 #endif

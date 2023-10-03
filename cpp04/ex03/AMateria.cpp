@@ -13,16 +13,37 @@ std::string const& AMateria::getType(void) const
 
 AMateria::AMateria()
 {
-    std::cout << "AMateria: Default constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "AMateria: Default constructor called" << std::endl;
 }
 
 AMateria::AMateria(std::string const & type)
     :_type(type)
 {
-    std::cout << "AMateria: String constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "AMateria: String constructor called" << std::endl;
+}
+
+AMateria::AMateria(const AMateria &copy)
+{
+    if (DEBUG)
+        std::cout << "AMateria: Copy constructor called" << std::endl;
+    this->_type = copy.getType();
+}
+
+AMateria&    AMateria::operator=(const AMateria &other)
+{
+    if (DEBUG)
+        std::cout << "AMateria: Assignment operator called" << std::endl;
+    if (this != &other)
+    {
+        _type = other.getType();
+    }
+    return (*this);
 }
 
 AMateria::~AMateria(void)
 {
-    std::cout << "AMateria: Destructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "AMateria: Destructor called" << std::endl;
 }
