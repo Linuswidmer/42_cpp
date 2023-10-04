@@ -1,5 +1,8 @@
 NAME  = ./bureaucrat
-SRCS = Bureaucrat.cpp main.cpp Form.cpp
+SRCS = Bureaucrat.cpp main.cpp AForm.cpp \
+	ShrubberyCreationForm.cpp \
+	RobotomyRequestForm.cpp \
+	PresidentialPardonForm.cpp
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 OBJS = $(SRCS:.cpp=.o) 
 
