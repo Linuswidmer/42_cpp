@@ -54,19 +54,19 @@ int main(void)
         {
             try
             {
-            //     Animal *animal_arr[10];
+                Animal *animal_arr[10];
 
-            //     for(int i = 0; i < 10; i++)
-            //     {
-            //         if (i % 2 == 0)
-            //             animal_arr[i] = new Cat();
-            //         else
-            //             animal_arr[i] = new Dog();
-            //     }
-            //     for (int i = 0; i < 10; i++)
-            //     {
-            //         delete animal_arr[i];
-            //     }
+                for(int i = 0; i < 10; i++)
+                {
+                    if (i % 2 == 0)
+                        animal_arr[i] = new Cat();
+                    else
+                        animal_arr[i] = new Dog();
+                }
+                for (int i = 0; i < 10; i++)
+                {
+                    delete animal_arr[i];
+                }
             }
             catch(const bad_alloc& e)
             {

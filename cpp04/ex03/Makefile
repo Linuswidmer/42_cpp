@@ -1,7 +1,7 @@
 NAME  = ./materia
 SRCS = AMateria.cpp Character.cpp Cure.cpp Ice.cpp ICharacter.cpp \
 		IMateriaSource.cpp MateriaSource.cpp main.cpp
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
 OBJS = $(SRCS:.cpp=.o) 
 
 all: $(NAME)

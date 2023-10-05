@@ -70,10 +70,7 @@ MateriaSource::~MateriaSource(void)
     while (i < 4)
     {
         if (_arr_materias[i])
-        {
-            std::cout << "enters here -- MateriaSource destruction" << std::endl;
             delete this->_arr_materias[i];
-        }
         i++;
     }
 }

@@ -1,6 +1,6 @@
 NAME  = ./animal
 SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
 OBJS = $(SRCS:.cpp=.o) 
 
 all: $(NAME)
@@ -12,9 +12,10 @@ $(NAME): $(OBJS)
 	c++ $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(NAME)
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(OBJS)
+	rm -f $(NAME)
+
 
 re: fclean all

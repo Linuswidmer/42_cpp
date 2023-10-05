@@ -13,8 +13,8 @@ public:
     WrongAnimal(const WrongAnimal &copy);
     WrongAnimal& operator=(const WrongAnimal &other);
 
-    std::string  getType(void);
-    void    makeSound(void) const;
+    std::string getType(void);
+    void        makeSound(void) const;
 };
 
 #endif

@@ -7,7 +7,6 @@ WrongCat::WrongCat(void)
     _type = "WrongCat";
 }
 
-// why does this work???
 WrongCat::WrongCat(const WrongCat &copy)
     :WrongAnimal(copy)
 {

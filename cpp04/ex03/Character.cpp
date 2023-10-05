@@ -12,9 +12,6 @@ void    Character::unequip(int idx)
         std::cout   << "Unequipping " << _arr_materias[idx]->getType()
                     << std::endl;
         _clone_record[_index_clone_record] = _arr_materias[idx];
-        save = _arr_materias[idx];
-        std::cout << _arr_materias[idx] << std::endl;
-        std::cout << _clone_record[_index_clone_record] << std::endl;
         _index_clone_record++; 
         _arr_materias[idx] = NULL; 
     }
@@ -88,8 +85,12 @@ Character::Character(const Character& copy)
     if (DEBUG)
         std::cout << "Character: Copy constructor called" << std::endl;
     
+    memset(_arr_materias, 0, 4 * sizeof(AMateria*));
+    memset(_clone_record, 0, 100 * sizeof(AMateria*));
+    _name = copy._name;
+    _index_arr_materias = copy._index_arr_materias;
+    _index_clone_record = copy._index_clone_record;
     int i = 0;
-    this->_name = copy._name;
     while (i < 4)
     {
         if (copy._arr_materias[i])
@@ -116,12 +117,12 @@ Character& Character::operator=(const Character &other)
         if (other._arr_materias[i])
             this->_arr_materias[i] = other._arr_materias[i]->clone();
     }
+    _index_arr_materias = other._index_arr_materias;
     return (*this);
 }
 
 Character::~Character(void)
 {
-    std::cout << "index clone records: " << _index_clone_record << std::endl;
     if (DEBUG)
         std::cout << "Character: Destructor called" << std::endl;
     for (int i = 0; i < 4; i++)
@@ -129,11 +130,8 @@ Character::~Character(void)
         if (_arr_materias[i])
             delete _arr_materias[i];
     }
-    delete save;
-    // for (int i = 0; i < _index_clone_record && i < 100; i++)
-    // {
-    //     std::cout << _clone_record[_index_clone_record] << std::endl;
-    //     std::cout << "Clone record destruction" << std::endl;
-    //     delete _clone_record[_index_clone_record];
-    // }
+    for (int i = 0; i < _index_clone_record && i < 100; i++)
+    {
+        delete _clone_record[i];
+    }
 }

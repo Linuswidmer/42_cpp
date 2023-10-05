@@ -4,6 +4,13 @@
 
 int main(void)
 {
+
+    // what is new now is that it will not be possible to instantiate from the abstract class Animal like
+    // Animale a = Animal();
+    // or
+    // Animal *a = new Animal();
+    
+    // same tests as previous exercise
     {
         std::cout << "TEST 1: Construction, Copy Construction and Assignement" << std::endl;
         std::cout << "-------------------------------------------------------" << std::endl;

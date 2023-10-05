@@ -7,7 +7,6 @@ Cat::Cat(void)
     _type = "Cat";
 }
 
-// why does this work???
 Cat::Cat(const Cat &copy)
     :Animal(copy)
 {

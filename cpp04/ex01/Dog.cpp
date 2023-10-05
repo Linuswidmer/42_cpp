@@ -18,6 +18,7 @@ Dog::Dog(void)
 Dog::~Dog(void)
 {
     std::cout << "Dog: Destructor called" << std::endl;
+    delete _brain;
 }
 
 Dog::Dog(const Dog& copy)
