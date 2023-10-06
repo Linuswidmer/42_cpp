@@ -5,23 +5,35 @@
 # include <iostream>
 # include <exception>
 
-class Bureaucrat: public std::exception 
+class Bureaucrat
 {
 public:
+    // Constructors, Assignment Operator, Destructors
+    Bureaucrat(void);
     Bureaucrat(const std::string name, int grade);
-    ~Bureaucrat(void) throw();
-
+    Bureaucrat(const Bureaucrat& copy);
+    Bureaucrat& operator=(const Bureaucrat& other);
+    ~Bureaucrat(void) throw(); // including "throw() guarantees that no exception will be thrown"
+    // Getters and Setters
     std::string getName(void) const;
     int         getGrade(void) const;
 
-    static std::exception   GradeTooLowException(void);
-    static std::exception   GradeTooHighException(void);
-    void                    increment(void);
-    void                    decrement(void);
-    // static std::exception   GradeTooLowException;
-    // static std::exception   GradeTooHighException;
-
+    // Public Member functions
+    void    increment(void);
+    void    decrement(void);
 private:
+    // Exceptions    
+    class GradeTooHighException: public std::exception 
+    {
+    public:
+        const char *what () const throw();
+    };
+    class GradeTooLowException: public std::exception 
+    {
+    public:
+        const char *what () const throw();
+    };
+    // Data members
     const std::string   _name;
     int                 _grade;
 };

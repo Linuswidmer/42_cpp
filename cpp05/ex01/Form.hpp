@@ -11,14 +11,11 @@ public:
     Form(const std::string name, int min_grade_sign, 
             int min_grade_exec);
 
-    void            beSigned(Bureaucrat& b);
+    void            beSigned(Bureaucrat& b) throw();
     std::string     getName(void) const;
     bool            getSignedStatus(void) const;
     int             getMinGradeSign(void) const;
     int             getMinGradeExec(void) const;
-    
-    static std::exception GradeTooLowException(void);
-    static std::exception GradeTooHighException(void);
 
 private:
     const std::string   _name;

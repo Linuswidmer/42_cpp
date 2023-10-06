@@ -1,6 +1,8 @@
 # include "Bureaucrat.hpp"
 # include "Form.hpp"
 
+/*-------------------PUBLIC MEMBER FUNCITONS------------------*/
+
 void    Bureaucrat::signForm(Form& f) const
 {
     if (_grade <=  f.getMinGradeSign())
@@ -27,6 +29,8 @@ void Bureaucrat::decrement(void)
         throw(Bureaucrat::GradeTooHighException());
 }
 
+/*------------------- GETTERS AND SETTERS ------------------*/
+
 std::string Bureaucrat::getName(void) const
 {
     return (_name);
@@ -35,6 +39,13 @@ std::string Bureaucrat::getName(void) const
 int Bureaucrat::getGrade(void) const
 {
     return (_grade);
+}
+
+/*------------CONSTTRUCTORS, ASSIGNMENT, DESTRUCTORS--------------*/
+
+Bureaucrat::Bureaucrat(void)
+    :_name("default"), _grade(150)
+{
 }
 
 Bureaucrat::Bureaucrat(const std::string name, int grade)
@@ -46,24 +57,42 @@ Bureaucrat::Bureaucrat(const std::string name, int grade)
         throw (Bureaucrat::GradeTooHighException());
 }
 
+Bureaucrat::Bureaucrat(const Bureaucrat& copy)
+    : _name(copy.getName()), _grade(copy.getGrade())
+{
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
+{
+    if (this != &other)
+    {
+        //_name = other._name; // name is const so we cannot assign it?
+        _grade = other.getGrade();
+    }
+    return (*this);
+}
+
 Bureaucrat::~Bureaucrat(void) throw()
 {
 }
+
+/*-------------------EXCEPTIONS------------------*/
+
+
+const char* Bureaucrat::GradeTooHighException::what(void) const throw()
+{
+    return ("Error, grade too high");
+}
+
+const char* Bureaucrat::GradeTooLowException::what(void) const throw()
+{
+    return ("Error, grade too low");
+}
+
+/*-------------------OPERATOR OVERLOAD ------------------*/
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const rhs)
 {
     o << rhs.getName() << " , bureaucrat grade " << rhs.getGrade() << std::endl;
     return (o);
-}
-
-std::exception Bureaucrat::GradeTooLowException(void)
-{
-    std::cout << "Error, grade too low" << std::endl;
-    return (std::exception());
-}
-
-std::exception Bureaucrat::GradeTooHighException(void)
-{
-    std::cout << "Error, grade too high" << std::endl;
-    return (std::exception());
 }
