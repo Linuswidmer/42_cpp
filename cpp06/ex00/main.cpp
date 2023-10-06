@@ -1,11 +1,16 @@
 # include "ScalarConverter.hpp"
 
-int main(int argc, char **argv)
+// dont use argc, argv, make a loop from stdin instead
+
+int main(void)
 {
-    if (argc != 2)
-        std::cout << "Please provide one argument" << std::endl;
-    else
+    while(std::cin) 
     {
-        ScalarConverter::convert(argv[1]);
-    }
+        std::string input_line;
+
+        getline(std::cin, input_line);
+        std::cout << "Converting: " << input_line << std::endl;
+        ScalarConverter::convert(input_line.c_str());
+        std::cout << std::endl;
+    };
 }
