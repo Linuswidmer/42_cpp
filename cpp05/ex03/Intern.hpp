@@ -17,6 +17,11 @@ public:
     ~Intern(void);
 
 private:
+    class FormDoesNotExistException: public std::exception
+    {
+    public:
+        const char *what () const throw();
+    };
 };
 
 #endif

@@ -10,13 +10,11 @@ AForm    *Intern::makeForm(std::string form_name, std::string target)
     int         i;
     AForm       *form;
 
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 3 && list_form_names[i] != form_name; i++)
     {
-        if (list_form_names[i] == form_name);
+        if (list_form_names[i] == form_name)
             break;
     }
-    std::cout << "form name is " << form_name << std::endl;
-    std::cout << "Intern creates" << list_form_names[i] << std::endl;
     switch (i)
     {
     case 0:
@@ -29,11 +27,10 @@ AForm    *Intern::makeForm(std::string form_name, std::string target)
         form = new PresidentialPardonForm(target);
         break;
     default:
-        form = NULL; 
+        form = NULL;
+        throw(Intern::FormDoesNotExistException());
         break;
     }
-    std::cout << "i is " << i << std::endl;
-    // I think throwing an exception here additionally would be nice!
     return (form);
 }
 
@@ -54,3 +51,10 @@ Intern& Intern::operator=(const Intern& other)
 
 Intern::~Intern(void)
 {}
+
+/*----------------------EXCEPTIONS-----------------------*/
+
+const char* Intern::FormDoesNotExistException::what(void) const throw()
+{
+    return ("Error, can't create Form, does not exist");
+}
