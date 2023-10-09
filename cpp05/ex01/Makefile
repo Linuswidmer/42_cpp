@@ -1,12 +1,12 @@
 NAME  = ./bureaucrat
 SRCS = Bureaucrat.cpp main.cpp Form.cpp
 CFLAGS = -Wall -Werror -Wextra -std=c++98
-OBJS = $(SRCS:.cpp=.o) 
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	c++ $(CFLAGS) $(OBJS)-o $(NAME)
+	c++ $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.cpp %.h
 	c++ $(CFLAGS) -c $< -o $@

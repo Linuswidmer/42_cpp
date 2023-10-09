@@ -25,7 +25,10 @@ public:
     // Public Member functions
     void    increment(void);
     void    decrement(void);
-
+private:
+    // Data Members
+    const std::string   _name;
+    int                 _grade;
     // Exceptions    
     class GradeTooHighException: public std::exception 
     {
@@ -37,11 +40,6 @@ public:
     public:
         const char *what () const throw();
     };
-
-private:
-    // Data Members
-    const std::string   _name;
-    int                 _grade;
 };
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const rhs);

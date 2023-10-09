@@ -5,12 +5,17 @@
 
 void    Bureaucrat::signForm(Form& f) const
 {
-    if (_grade <=  f.getMinGradeSign())
-        std::cout   << _name << " signed " << f.getName() << std::endl;
+    std::string reason;
+
+    if (f.getSignedStatus() == 1)
+        reason = " because Form was already signed";
+    else if(_grade >=  f.getMinGradeSign())
+        reason = " beacause Bureaurats grade is too low";
+    
+    if (reason.empty())
+            std::cout   << _name << " signed " << f.getName() << std::endl;
     else
-        std::cout   << _name << " couldn't sign "
-                    << f.getName() << "because grade too low"
-                    << std::endl;
+        std::cout   << _name << " couldn't sign " << f.getName() << reason << std::endl;
 }
 
 void Bureaucrat::increment(void)
@@ -41,7 +46,7 @@ int Bureaucrat::getGrade(void) const
     return (_grade);
 }
 
-/*------------CONSTTRUCTORS, ASSIGNMENT, DESTRUCTORS--------------*/
+/*------------CONSTRUCTORS, ASSIGNMENT, DESTRUCTORS--------------*/
 
 Bureaucrat::Bureaucrat(void)
     :_name("default"), _grade(150)
