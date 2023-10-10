@@ -1,13 +1,17 @@
 # ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
+template <typename T> inline T min(const T& a, const T& b) {return( (a < b) ? a : b );};
+template <typename T> inline T max(const T& a, const T& b) {return( (a > b) ? a : b );};
+
 template <typename T>
-T   min(T a, T b)
+void    swap(T& a, T& b)
 {
-    if (a < b)
-        return (a);
-    else
-        return (b);
+    T tmp;
+
+    tmp = a;
+    a = b;
+    b = tmp;
 }
 
 #endif
