@@ -1,7 +1,7 @@
-NAME      = ./serialize
+NAME      = ./identify
 
 SRCS_PATH = srcs/
-SRC       = main.cpp Serialize.cpp
+SRC       = main.cpp Base.cpp
 SRCS      = $(addprefix $(SRCS_PATH), $(SRC))
 
 OBJ_PATH  = obj/

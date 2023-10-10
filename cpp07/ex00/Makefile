@@ -1,11 +1,7 @@
-NAME      	= ./intern
+NAME      	= ./whatever
 
 SRC_PATH	= src/
-SRC			= Bureaucrat.cpp main.cpp AForm.cpp \
-				ShrubberyCreationForm.cpp \
-				RobotomyRequestForm.cpp \
-				PresidentialPardonForm.cpp \
-				Intern.cpp
+SRC			= main.cpp
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
 OBJ_PATH	= obj/
