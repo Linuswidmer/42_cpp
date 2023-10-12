@@ -40,14 +40,30 @@ void    identify(Base* p)
 
 void    identify(Base& p)
 {
-    A new_a = reinterpret_cast<A>(p);
-
-    // if (dynamic_cast<A>(p))
-    //     std::cout << "Pointer is of type A" << std::endl;
-    // if (dynamic_cast<B>(p))
-    //     std::cout << "Pointer is of type B" << std::endl;
-    // if (dynamic_cast<C>(p))
-    //     std::cout << "Pointer is of type C" << std::endl;
+    try
+    {
+        (void)dynamic_cast<A&>(p);
+        std::cout << "Reference is of type A" << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+    }
+    try
+    {
+        (void)dynamic_cast<B&>(p);
+        std::cout << "Reference is of type B" << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+    }
+    try
+    {
+        (void)dynamic_cast<C&>(p);
+        std::cout << "Reference is of type C" << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+    }
 }
 
 // generally we should never have to identify a subclass as this violates 
@@ -57,4 +73,5 @@ int main(void)
     Base *base_ptr = generate();
     identify(base_ptr);
     identify(*base_ptr);
+    delete base_ptr;
 }

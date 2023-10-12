@@ -7,6 +7,7 @@
 template <typename T, typename N, typename F>
 void    iter(T& arr, N len, F fun)
 {
+    // check if arr and fun exist
     for (int i = 0; i < len; i++)
     {
         fun(arr[i]);

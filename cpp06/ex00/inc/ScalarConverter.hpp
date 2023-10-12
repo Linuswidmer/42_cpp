@@ -17,24 +17,43 @@ enum EScalarType{
     invalid
 };
 
+// Singleton style class that converts a literal into all (possible)
+// scalar types
 class ScalarConverter
 {
 public:
+    // Public methods
+    static void convert(const char *s);
+
+    // Getters and setters
     static ScalarConverter& get(void);
 
-    static void convert(const char *s);
 private:
     ScalarConverter(void); // we dont want the class to be instanciable outside
     ScalarConverter(const ScalarConverter& s); // prevents copying
-    // also make assignment operator inaccessible
+    ScalarConverter& operator=(const ScalarConverter &other);
     ~ScalarConverter(void);
 
+    // Private implementation
     void        convertImpl(const char *s);
-    EScalarType detectType(const char *s);
-    void        display(void);
+    
     void        display(char c);
     void        display(double d);
+    void        display(float f);
     void        display(int i);
+
+    EScalarType detectType(const char *s);
+    bool        isChar(const char *s);
+    bool        isInt(const char *s);
+    bool        isFloat(const char *s);
+    bool        isDouble(const char *s);
+
+    // Exceptions
+    class NotConvertibleException: public std::exception
+    {
+    public:
+        const char *what () const throw();
+    };
 };
 
 #endif

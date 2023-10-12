@@ -17,4 +17,7 @@ int main(void)
     std::string string_arr[4] = {"hello","world","this","is"};
     void (*print_string)(std::string) = &print;
     iter(string_arr, 4, print_string);
+
+    // test also with differnt types for arr and printing function!
+    // test whether it works when using a variable instead of 4
 }

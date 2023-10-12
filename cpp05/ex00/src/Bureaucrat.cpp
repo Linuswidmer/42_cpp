@@ -30,7 +30,7 @@ int Bureaucrat::getGrade(void) const
     return (_grade);
 }
 
-/*------------CONSTTRUCTORS, ASSIGNMENT, DESTRUCTORS--------------*/
+/*------------CONSTRUCTORS, ASSIGNMENT, DESTRUCTORS--------------*/
 
 Bureaucrat::Bureaucrat(void)
     :_name("default"), _grade(150)
