@@ -1,7 +1,7 @@
-NAME      	= ./span
+NAME      	= ./mutantstack
 
 SRC_PATH	= src/
-SRC			= main.cpp Span.cpp
+SRC			= main.cpp
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
 OBJ_PATH	= obj/
