@@ -1,6 +1,6 @@
 #include "Span.hpp"
 
-/*------------------PUBLIC METHODS -----------------*/
+/*------------------------------ PUBLIC METHODS -----------------------------*/
 
 unsigned int    Span::shortestSpan(void) const
 {
@@ -42,10 +42,8 @@ unsigned int    Span::longestSpan(void) const
 
 void    Span::addRange(std::list<int>::iterator begin, std::list<int>::iterator end)
 {
-    std::cout << "Distance is " << std::distance(begin, end) << std::endl;
-    std::cout << "List size is " << _list.size() << std::endl;
-    if (static_cast<unsigned int>(_list.size() + std::distance(begin, end)) > _maxSize)
-        throw std::out_of_range("Span::addRange: Too many elements to Span");
+    if (_list.size() + std::distance(begin, end) > _maxSize)
+        throw std::out_of_range("Span::addRange: Too many elements to Span\n");
     else
         _list.insert(_list.end(), begin, end);
 }
@@ -58,10 +56,9 @@ void    Span::addNumber(int num)
         throw(std::out_of_range("Span::addNumber: Span is full\n"));
 }
 
-/*-----------CONSTRUCTOR, ASSIGNEMENT, DESTRUCTOR------ */
+/*------------------- CONSTRUCTOR, ASSIGNEMENT, DESTRUCTOR ------------------*/
 
 Span::Span(void)
-    :_maxSize(0), _list()
 {
 }
 
@@ -72,17 +69,18 @@ Span::Span(unsigned int N)
 
 Span::Span(const Span& copy)
 {
-    (void)copy;
+    *this = copy;
 }
 
 Span& Span::operator=(const Span& other)
 {
     if (this != &other)
-    {}
+    {
+        _maxSize = other._maxSize;
+        _list = other._list;
+    }
     return (*this);
 }
 
 Span::~Span(void)
 {}
-
-/* ----------------OPERATOR OVERLOAD---------------*/

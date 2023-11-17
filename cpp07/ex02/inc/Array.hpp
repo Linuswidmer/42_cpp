@@ -3,8 +3,6 @@
 
 # include <iostream>
 
-// what should I do with const instances of my Array? It wouldn't call the same functions right
-
 template<typename T>
 class Array
 {

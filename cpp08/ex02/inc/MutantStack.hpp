@@ -2,9 +2,10 @@
 # define MUTANTSTACK_HPP
 
 # include <deque>
+# include <stack>
 
 template <typename T>
-class MutantStack
+class MutantStack: public std::stack<T>
 {
 public:
     // public methods stack
@@ -24,8 +25,8 @@ public:
     typename std::deque<T>::iterator begin(void);
     typename std::deque<T>::iterator end(void);
 
-    typename std::deque<T>::iterator begin(void) const;
-    typename std::deque<T>::iterator end(void) const;
+    typename std::deque<T>::const_iterator begin(void) const;
+    typename std::deque<T>::const_iterator end(void) const;
 
 
     // Iterator
@@ -85,13 +86,13 @@ typename std::deque<T>::iterator MutantStack<T>::end()
 }
 
 template <typename T>
-typename std::deque<T>::iterator MutantStack<T>::begin() const
+typename std::deque<T>::const_iterator MutantStack<T>::begin() const
 {
     return (_deq.begin());
 }
 
 template <typename T>
-typename std::deque<T>::iterator MutantStack<T>::end() const
+typename std::deque<T>::const_iterator MutantStack<T>::end() const
 {
     return (_deq.end());
 }
@@ -103,10 +104,11 @@ MutantStack<T>::MutantStack(void)
 {
 }
 
+#include <iostream>
 template <typename T>
 MutantStack<T>::MutantStack(const MutantStack &copy)
+    : _deq(copy._deq)
 {
-    *this = copy; 
 }
 template <typename T>
 MutantStack<T>& MutantStack<T>::operator=(const MutantStack &other)

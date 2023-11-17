@@ -3,14 +3,17 @@
 
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 
-template <typename T, typename N, typename F>
-void    iter(T& arr, N len, F fun)
+template <typename T, typename F>
+void    iter(T &arr, int len, F fun)
 {
-    // check if arr and fun exist
-    for (int i = 0; i < len; i++)
+    if (arr && fun)
     {
-        fun(arr[i]);
+        for (int i = 0; i < len; i++)
+        {
+            fun(arr[i]);
+        }
     }
 }
 

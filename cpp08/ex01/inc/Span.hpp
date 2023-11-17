@@ -25,7 +25,8 @@ public:
 
 private:
     Span(void);
-    // Data
+    
+    //data
     unsigned int        _maxSize;
     std::list<int>    _list;
 };
