@@ -6,8 +6,8 @@ int	main(int argc, char **argv)
 	{
 		try
 		{
-			BitcoinExchange bex(argv[1]);
-
+			BitcoinExchange bex("data.csv");
+			bex.exchange(argv[1]);
 		}
 		catch(const std::exception& e)
 		{
