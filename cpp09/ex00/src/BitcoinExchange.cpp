@@ -115,7 +115,7 @@ float	BitcoinExchange::_amountToFloat(const std::string& amountStr) const
 		std::cerr << "Error: not a positive number\n";
 		return (0);
 	}
-	if (static_cast<long>(amount) > 2147483647)
+	if (static_cast<long>(amount) > 1000)
 	{
 		std::cerr << "Error: too large a number\n";
 		return (0);
