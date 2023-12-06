@@ -13,7 +13,7 @@ void	PmergeMe::sort()
 		std::cout << "(" << _vec[i].first << ", " << _vec[i].second << ") \n";
 	}
 
-	std::cout << "STEP 4: Create the main chain and the pend" std::endl;
+	std::cout << "STEP 4: Create the main chain and the pend" << std::endl;
 	for (size_t i = 0; i < _vec.size(); i++)
 	{
 		if (i == 0)
@@ -26,6 +26,20 @@ void	PmergeMe::sort()
 			_mainChain.push_back(_vec[i].first);
 			_pend.push_back(_vec[i].second);
 		}
+	}
+
+	// print main chain
+	std::cout << "Main chain: ";
+	for (size_t i = 0; i < _mainChain.size(); i++)
+	{
+		std::cout << _mainChain[i] << " ";
+	}
+	std::cout << std::endl;
+	// print pend
+	std::cout << "Pend: ";
+	for (size_t i = 0; i < _pend.size(); i++)
+	{
+		std::cout << _pend[i] << " ";
 	}
 }
 
