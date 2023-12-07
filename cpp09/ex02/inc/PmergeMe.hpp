@@ -11,6 +11,7 @@
 # include <math.h>
 # include <ctime>
 # include <deque>
+# include <cctype>
 
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
@@ -22,7 +23,7 @@
 # define DEBUG_FJ 0
 # define DEBUG_SORTED 1
 
-// template <typename Container>
+// template <typename Container, typename ContainerPair>
 class PmergeMe
 {
 public:
@@ -58,7 +59,7 @@ private:
 	std::vector<int>					_vecPend;
 
 
-	// List data
+	// Deque data
 	std::deque<std::pair<int, int> >	_deque;
 	std::deque<int>						_dequeMainChain;
 	std::deque<int>						_dequePend;
@@ -69,37 +70,9 @@ private:
 	template <typename T>
 	void	_printVec(const T &vec) const;
 	void	_generateJacobsthalSequence(void);
+	void	_checkInput(const char **argv);
+	bool	_isNumeric(const char *str);
 };
 
-/* void	PmergeMe::_insertionByJacobsthalSequence(std::vector<int> &mainChain, std::vector<int> &pend)
-{
-	if (DEBUG_FJ)
-	std::cout	<< YELLOW << "\nSTEP 5: Create the jacobsthal sequence and insert the pend" 
-				<<" into the main chain" <<  RESET_PRINT << std::endl;
-
-	// insert the first element of the pend to the beginning of the main chain
-	mainChain.insert(mainChain.begin(), pend[0]);
-
-
-
-	bool finished = false;
-	for (size_t jacobsthal_index = 3; finished == false; jacobsthal_index++)
-	{
-		size_t index_to_sort = _jacobsthal_sequence[jacobsthal_index];
-		while ( index_to_sort > _jacobsthal_sequence[jacobsthal_index - 1] )
-		{
-			if ( index_to_sort <= pend.size())
-			{
-				_insertToMainChain(pend[index_to_sort - 1], mainChain);
-			}
-			index_to_sort = index_to_sort - 1;
-			if (mainChain.size() == _size)
-			{
-				finished = true;
-				break;
-			}
-		}
-	}
-} */
 
 #endif

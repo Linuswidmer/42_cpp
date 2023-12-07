@@ -85,6 +85,11 @@ void	PmergeMe::_splitToPendMainChain(T &mainChain, T &pend)
 	}
 }
 
+/*
+*	Computes which index of the pend should be inserted into the main chain
+*	by decrementinf the jacobstahl number until it reaches the previous
+*	jacobstahl number. Inserts this number using binary insertion algorithm
+*/
 template <typename T>
 void	PmergeMe::_insertionByJacobsthalSequence(T &mainChain, T &pend)
 {
@@ -158,6 +163,30 @@ void	PmergeMe::_generateJacobsthalSequence(void)
     }
 }
 
+void	PmergeMe::_checkInput(const char **argv)
+{
+
+	int i = 0;
+	for (; argv[i]; i++)
+	{
+		if (!_isNumeric(argv[i]))
+			throw(std::invalid_argument("Invalid input: not a number"));
+	}
+	if (i < 2)
+		throw(std::invalid_argument("Invalid input: not enough numbers"));
+
+}
+
+bool	PmergeMe::_isNumeric(const char *str)
+{
+	for (int i = 0; str[i] != '\0'; i++)
+	{
+		if (!std::isdigit(str[i]))
+			return (false);
+	}
+	return (true);
+}
+
 template <typename T>
 void	PmergeMe::_printVec(const T &vec) const
 {
@@ -173,12 +202,8 @@ void	PmergeMe::_printVec(const T &vec) const
 PmergeMe::PmergeMe(const char **argv)
 	: _size(0), _struggler(-1)
 {
-
-	// check if input is valid, if all numbers are positive etc
-	// check that there is at least two numbers (or three?)
-
+	_checkInput(argv);
 	_generateJacobsthalSequence();
-	// check input?
 
 	for (int i = 0; argv[i] != NULL; i = i + 2)
 	{

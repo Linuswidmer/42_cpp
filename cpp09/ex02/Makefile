@@ -12,6 +12,7 @@ INC_PATH	= inc/
 INCS		= -I $(INC_PATH)
 
 CC        	= c++
+OPTIMIZER 	= -O3
 CFLAGS    	= -Wall -Werror -Wextra -std=c++98 -g
 
 all: $(OBJ_PATH) $(NAME)
@@ -24,6 +25,9 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
 
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
+
+optimize: CFLAGS += $(OPTIMIZER)
+optimize: re
 
 clean:
 	rm -rf $(OBJ_PATH)

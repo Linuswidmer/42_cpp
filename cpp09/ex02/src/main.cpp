@@ -1,7 +1,16 @@
 # include "PmergeMe.hpp"
 
-// ./PmergeMe 7 8 27 100 11 46 2 53 0 
-// ./PmergeMe `shuf -i 1-100000 -n 100 | tr "\n" " "`
+// arguments for the program
+	// ./PmergeMe 7 8 27 100 11 46 2 53 0 
+	// ./PmergeMe `shuf -i 1-100000 -n 100 | tr "\n" " "`
+
+// why is the deque slower than the vector?
+	// As opposed to std::vector, the elements of a deque are not stored 
+	// contiguously: typical implementations use a sequence of individually 
+	// allocated fixed-size arrays, with additional bookkeeping, which means 
+	// indexed access to deque must perform two pointer dereferences, 
+	// compared to vector's indexed access which performs only one.
+// from	https://en.cppreference.com/w/cpp/container/deque
 
 template <typename T>
 bool isSorted(const char **argv, T sorted_vector)
@@ -26,50 +35,65 @@ bool isSorted(const char **argv, T sorted_vector)
 	return (sorted_vector == copy);
 }
 
+void	printElements(int argc, const char **argv, std::vector<int> sorted_vector)
+{
+	std::cout << "\nBefore: ";
+	for (int i = 1; argv[i] && i <= 5; i++) 
+		std::cout << argv[i] << " ";
+	if (argc > 6)
+		std::cout << "...";
+	std::cout << std::endl;
+
+	std::cout << "After: ";
+	for (size_t i = 0; i < sorted_vector.size() && i < 5; i++)
+		std::cout << sorted_vector[i] << " ";
+	if (sorted_vector.size() > 5)
+		std::cout << "...";
+	std::cout << std::endl;
+}
+
 int	main(int argc, const char **argv)
 {
 	if ( argc > 1 )
 	{
-		PmergeMe			fj_vector( argv + 1);
 		std::vector<int>	sorted_vector;
 		std::deque<int>		sorted_deque;
 		clock_t				start, end;
+		try
+		{
+			PmergeMe			fj_vector( argv + 1);
 
-		/////////////////////////////////////////////////////////////////////
-		// Vector
-		start = clock();
-		sorted_vector = fj_vector.vecSort();
-		end = clock();
-		std::cout	<< "Time to process a range of " << argc - 1 << " elements: " 
-					<< static_cast<double>(end - start) / CLOCKS_PER_SEC
-					<< " microseconds" << std::endl;
-		if (DEBUG_SORTED)
-			isSorted(argv, sorted_vector);
-		
-		/////////////////////////////////////////////////////////////////////
-		// Deque
-		start = clock();
-		sorted_deque = fj_vector.dequeSort();
-		end = clock();
-		std::cout	<< "Time to process a range of " << argc - 1 << " elements: " 
-					<< static_cast<double>(end - start) / CLOCKS_PER_SEC
-					<< " microseconds" << std::endl;
-		if (DEBUG_SORTED)
-			isSorted(argv, sorted_deque);
+			/////////////////////////////////////////////////////////////////////
+			// Vector
+			start = clock();
+			sorted_vector = fj_vector.vecSort();
+			end = clock();
+			std::cout	<< "Time to process a range of " << argc - 1 << " elements: " 
+						<< static_cast<double>(end - start) / CLOCKS_PER_SEC
+						<< " microseconds" << std::endl;
+			if (DEBUG_SORTED)
+				isSorted(argv, sorted_vector);
+			
+			/////////////////////////////////////////////////////////////////////
+			// Deque
+			start = clock();
+			sorted_deque = fj_vector.dequeSort();
+			end = clock();
+			std::cout	<< "Time to process a range of " << argc - 1 << " elements: " 
+						<< static_cast<double>(end - start) / CLOCKS_PER_SEC
+						<< " microseconds" << std::endl;
+			
+			if (DEBUG_SORTED)
+				isSorted(argv, sorted_deque);
 
-		std::cout << "\nBefore: ";
-		for (int i = 1; argv[i] && i < 5; i++) 
-			std::cout << argv[i] << " ";
-		if (argc > 5)
-			std::cout << "...";
-		std::cout << std::endl;
+			printElements(argc, argv, sorted_vector);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+			return (1);
+		}
 
-		std::cout << "After: ";
-		for (size_t i = 0; i < sorted_vector.size() && i < 5; i++)
-			std::cout << sorted_vector[i] << " ";
-		if (sorted_vector.size() > 5)
-			std::cout << "...";
-		std::cout << std::endl;
 	}
 	else
 	{
