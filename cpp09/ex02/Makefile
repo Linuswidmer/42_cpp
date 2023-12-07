@@ -12,7 +12,7 @@ INC_PATH	= inc/
 INCS		= -I $(INC_PATH)
 
 CC        	= c++
-CFLAGS    	= -Wall -Werror -Wextra -std=c++98
+CFLAGS    	= -Wall -Werror -Wextra -std=c++98 -g
 
 all: $(OBJ_PATH) $(NAME)
 
