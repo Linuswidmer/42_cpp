@@ -1,7 +1,7 @@
 NAME      	= ./PmergeMe
 
 SRC_PATH	= src/
-SRC			= main.cpp PmergeMe.cpp
+SRC			= main.cpp
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
 OBJ_PATH	= obj/

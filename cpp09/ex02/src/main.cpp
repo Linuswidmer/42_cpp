@@ -61,27 +61,29 @@ int	main(int argc, const char **argv)
 		clock_t				start, end;
 		try
 		{
-			PmergeMe			fj_vector( argv + 1);
-
 			/////////////////////////////////////////////////////////////////////
 			// Vector
+			PmergeMe<std::vector<int>, 
+				std::vector<std::pair<int, int> > >	fj_vector( argv + 1);
 			start = clock();
-			sorted_vector = fj_vector.vecSort();
+			sorted_vector = fj_vector.sort();
 			end = clock();
 			std::cout	<< "Time to process a range of " << argc - 1 << " elements: " 
 						<< static_cast<double>(end - start) / CLOCKS_PER_SEC
-						<< " microseconds" << std::endl;
+						<< " seconds" << std::endl;
 			if (DEBUG_SORTED)
 				isSorted(argv, sorted_vector);
 			
 			/////////////////////////////////////////////////////////////////////
 			// Deque
+			PmergeMe<std::deque<int>, 
+				std::deque<std::pair<int, int> > >	fj_deque( argv + 1);
 			start = clock();
-			sorted_deque = fj_vector.dequeSort();
+			sorted_deque = fj_deque.sort();
 			end = clock();
 			std::cout	<< "Time to process a range of " << argc - 1 << " elements: " 
 						<< static_cast<double>(end - start) / CLOCKS_PER_SEC
-						<< " microseconds" << std::endl;
+						<< " seconds" << std::endl;
 			
 			if (DEBUG_SORTED)
 				isSorted(argv, sorted_deque);

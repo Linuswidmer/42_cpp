@@ -21,15 +21,14 @@
 # define RESET_PRINT "\033[0m"
 
 # define DEBUG_FJ 0
-# define DEBUG_SORTED 1
+# define DEBUG_SORTED 0
 
-// template <typename Container, typename ContainerPair>
+template <typename C, typename CPair>
 class PmergeMe
 {
 public:
 	// public methods
-	std::vector<int>	vecSort();
-	std::deque<int>		dequeSort();
+	C	sort();
 
 	// Constructors, Assignment, Destructors
 	PmergeMe(const char **argv);
@@ -38,41 +37,32 @@ public:
 	~PmergeMe(void);
 
 private:
-	// Sorting methods
-	template <typename T>
-	void	_sortPairsByLargest(T &vec);
-	template <typename T>
-	void	_splitToPendMainChain(T &mainChain, T &pend);
-	template <typename T>
-	void	_insertionByJacobsthalSequence(T &mainChain, T &pend);
-	template <typename T>
-	void	_insertStruggler(T &mainChain);
+	// Container
+	CPair	_con;
+	C		_conMainChain;
+	C		_conPend;
 
-	// General data
-	std::vector<size_t>					_jacobsthal_sequence;
-	size_t								_size;
-	int									_struggler;
+	// General
+	C		_jacobsthal_sequence;
+	size_t	_size;
+	int		_struggler;
 	
-	// Vector data
-	std::vector<std::pair<int, int> >	_vec;
-	std::vector<int>					_vecMainChain;
-	std::vector<int>					_vecPend;
-
-
-	// Deque data
-	std::deque<std::pair<int, int> >	_deque;
-	std::deque<int>						_dequeMainChain;
-	std::deque<int>						_dequePend;
-
+	// Sorting methods
+	void	_sortPairsByLargest(CPair &con);
+	void	_splitToPendMainChain(C &mainChain, C &pend);
+	void	_insertionByJacobsthalSequence(C &mainChain, C &pend);
+	void	_insertStruggler(C &mainChain);
+	
 	// utils
-	template <typename T>
-	void	_insertToMainChain(int num, T &mainChain);
-	template <typename T>
-	void	_printVec(const T &vec) const;
+	void	_insertToMainChain(int num, C &mainChain);
+	void	_print(const C &con) const;
 	void	_generateJacobsthalSequence(void);
 	void	_checkInput(const char **argv);
 	bool	_isNumeric(const char *str);
+	void	_quickSort(CPair &con, int left, int right);
+	int		_partition(CPair &con, int left, int right);
 };
 
+#include "PmergeMe.tpp"
 
 #endif
