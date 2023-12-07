@@ -21,7 +21,8 @@
 # define RESET_PRINT "\033[0m"
 
 # define DEBUG_FJ 0
-# define DEBUG_SORTED 0
+# define IS_SORTED 0	
+# define COMPARE_STD_SORT 0
 
 template <typename C, typename CPair>
 class PmergeMe

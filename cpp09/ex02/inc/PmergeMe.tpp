@@ -65,7 +65,7 @@ void	PmergeMe<C, CPair>::_splitToPendMainChain(C &mainChain, C &pend)
 		}
 		else
 		{
-			mainChain.push_back(_con[i].first);
+			mainChain.push_back(_con[i].first);PmergeMe
 			pend.push_back(_con[i].second);
 		}
 	}
@@ -174,7 +174,7 @@ template <typename C, typename CPair>
 void PmergeMe<C, CPair>::_quickSort(CPair &con, int low, int high)
 {
     if (low < high)
-    {
+    {PmergeMe
         int pi = _partition(con, low, high);
         _quickSort(con, low, pi - 1);
         _quickSort(con, pi + 1, high);

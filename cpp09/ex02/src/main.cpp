@@ -68,10 +68,10 @@ int	main(int argc, const char **argv)
 			start = clock();
 			sorted_vector = fj_vector.sort();
 			end = clock();
-			std::cout	<< "Time to process a range of " << argc - 1 << " elements: " 
-						<< static_cast<double>(end - start) / CLOCKS_PER_SEC
-						<< " seconds" << std::endl;
-			if (DEBUG_SORTED)
+			std::cout	<< "Time to process a range of " << argc - 1 << " elements with vector: " 
+						<< MAGENTA << static_cast<double>(end - start) / CLOCKS_PER_SEC
+						<<  RESET_PRINT << " seconds" << std::endl;
+			if (IS_SORTED)
 				isSorted(argv, sorted_vector);
 			
 			/////////////////////////////////////////////////////////////////////
@@ -81,14 +81,29 @@ int	main(int argc, const char **argv)
 			start = clock();
 			sorted_deque = fj_deque.sort();
 			end = clock();
-			std::cout	<< "Time to process a range of " << argc - 1 << " elements: " 
-						<< static_cast<double>(end - start) / CLOCKS_PER_SEC
-						<< " seconds" << std::endl;
+			std::cout	<< "Time to process a range of " << argc - 1 << " elements with deque: " 
+						<< MAGENTA << static_cast<double>(end - start) / CLOCKS_PER_SEC 
+						<< RESET_PRINT << " seconds" << std::endl;
 			
-			if (DEBUG_SORTED)
+			if (IS_SORTED)
 				isSorted(argv, sorted_deque);
 
 			printElements(argc, argv, sorted_vector);
+
+			/////////////////////////////////////////////////////////////////////
+			// std::sort
+			if (COMPARE_STD_SORT)
+			{
+				std::vector<int>	vec;
+				for (int i = 1; argv[i]; i++) 
+					vec.push_back(std::atoi(argv[i]));
+				start = clock();
+				std::sort(vec.begin(), vec.end());
+				end = clock();
+				std::cout	<< "Time to process a range of " << argc - 1 << " elements with vector + std::sort: " 
+							<< MAGENTA << static_cast<double>(end - start) / CLOCKS_PER_SEC
+							<< RESET_PRINT << " seconds" << std::endl;
+			}
 		}
 		catch(const std::exception& e)
 		{
