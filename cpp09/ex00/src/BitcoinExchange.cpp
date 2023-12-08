@@ -31,10 +31,12 @@ void	BitcoinExchange::exchange(const char *input) const
 		long		date = _dateToInt(dateStr);
 		if (date == 0)
 			continue;
-		double		amount = _amountToFloat(amountStr);
-		if (amount == 0)
+		double		amount = _amountToDouble(amountStr);
+		if (amount == -1)
 			continue;
-		float		price = _getPriceFromDatabase(date);
+		double		price = _getPriceFromDatabase(date);
+		if (price == -1)
+			continue;
 
 		_printExchange(dateStr, amount, price);
 	}
@@ -53,7 +55,7 @@ void	BitcoinExchange::printDataBase(void)
 *	Prints the result of the exchange in format: DATE => AMOUNT = VALUE 
 */
 void	BitcoinExchange::_printExchange(std::string date, 
-											float amount, float price) const
+											double amount, double price) const
 {
 	std::cout	<< date << " => "
 				<< amount << " = "
@@ -63,16 +65,16 @@ void	BitcoinExchange::_printExchange(std::string date,
 /*
 *	Returns the price of the bitcoin on the given date
 */
-float	BitcoinExchange::_getPriceFromDatabase(const long &date) const
+double	BitcoinExchange::_getPriceFromDatabase(const long &date) const
 {
-	std::map<long, float>::const_iterator it = _dataBase.lower_bound(date);
+	std::map<long, double>::const_iterator it = _dataBase.lower_bound(date);
 	
 	if (it == _dataBase.end())
 		return (--it)->second;
-	else if (it == _dataBase.begin())
-		return (it->second);
 	else if (it->first == date)
 		return (it->second);
+	else if (it == _dataBase.begin())
+		return (std::cerr << "Error: date before  first entry in  database\n", -1);
 	else
 		return (--it)->second;
 }
@@ -90,37 +92,38 @@ void	BitcoinExchange::_readDataBase(const char *dataBaseName)
 	std::string content;
 	getline(dataBase, content);	// skip first line containing column names
 
-	while (getline(dataBase, content))	
-		_dataBase[_dateToInt(content.substr(0, 10))] = atof(content.substr(11).c_str());
+	while (getline(dataBase, content))
+	{
+		long date = _dateToInt(content.substr(0, 10));
+		if (date == 0)
+			throw(std::invalid_argument("Error: invalid database file"));
+		double value = std::atof(content.substr(11).c_str());
+		if (value < 0)
+			throw(std::invalid_argument("Error: invalid database file"));
+		_dataBase[date] = value;
+	
+	}
 	dataBase.close();
 }
 
 /*
-*	Converts a string to a float value
+*	Converts a string to a double value
 *  - checks if the string is empty
 *  - checks if the string is a positive number
 *  - checks if the amount is not too large ( > 2147483647 )
 */
-float	BitcoinExchange::_amountToFloat(const std::string& amountStr) const
+double	BitcoinExchange::_amountToDouble(const std::string& amountStr) const
 {
 	if (amountStr.empty())
-	{
-		std::cerr << "Error: empty amount\n";
-		return (0);
-	}
-	float amount = atof(amountStr.c_str());
+		return (std::cerr << "Error: empty amount\n", -1);
+	
+	double amount = std::atof(amountStr.c_str());
 
 	if (amount < 0 )
-	{
-		std::cerr << "Error: not a positive number\n";
-		return (0);
-	}
+		return (std::cerr << "Error: not a positive number\n", -1);
 	if (static_cast<long>(amount) > 1000)
-	{
-		std::cerr << "Error: too large a number\n";
-		return (0);
-	}
-	return amount;
+		return (std::cerr << "Error: too large a number\n", -1);
+	return (amount);
 }
 
 /*
@@ -135,10 +138,8 @@ int	BitcoinExchange::_dateToInt(const std::string& dateStr) const
 	dateStream >> year >> dash1 >> month >> dash2 >> day;
 
 	if ( !_isDateValid(year, month, day) )
-	{
-		std::cerr << "Error bad input => " << dateStr << "\n";
-		return (0);
-	}
+		return (std::cerr << "Error bad input => " << dateStr << "\n", 0);
+  
     // Combine components into an integer value (YYYYMMDD)
     int result = year * 10000 + month * 100 + day;
 
@@ -188,9 +189,9 @@ bool	BitcoinExchange::_isDateValid(const int &year, const int &month,
 	return (true);
 }
 
-void	BitcoinExchange::_printMap(std::map<long, float> map) const
+void	BitcoinExchange::_printMap(std::map<long, double> map) const
 {
-	for (std::map<long, float>::iterator it = map.begin();
+	for (std::map<long, double>::iterator it = map.begin();
 			it != map.end(); ++it)
 	{
 		std::cout << it->first << " => " << it->second << '\n';
@@ -205,6 +206,8 @@ void	BitcoinExchange::_printMap(std::map<long, float> map) const
 BitcoinExchange::BitcoinExchange(const char *dateBaseName)
 {
 	_readDataBase(dateBaseName);
+	if (_dataBase.empty())
+		throw(std::invalid_argument("Error: empty database file"));
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy)

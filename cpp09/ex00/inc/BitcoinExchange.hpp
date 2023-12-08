@@ -8,6 +8,7 @@
 # include <map>
 # include <stdlib.h>
 # include <algorithm>
+# include <cstdlib>
 
 class BitcoinExchange
 {
@@ -25,17 +26,17 @@ public:
 private:
 	BitcoinExchange(void);
 
-	void	_readDataBase(const char *dataBaseName);
-	float	_getPriceFromDatabase(const long &date) const;
-	void	_printExchange(std::string date, float amount, float price) const;
-
 	// Data
-	std::map<long, float> _dataBase;
+	std::map<long, double> _dataBase;
+
+	void	_readDataBase(const char *dataBaseName);
+	double	_getPriceFromDatabase(const long &date) const;
+	void	_printExchange(std::string date, double amount, double price) const;
 
 	// utils
-	void	_printMap(std::map<long, float> map) const;
+	void	_printMap(std::map<long, double> map) const;
 	int		_dateToInt(const std::string &date) const;
-	float	_amountToFloat(const std::string &amount) const;
+	double	_amountToDouble(const std::string &amount) const;
 	bool 	_isDateValid(const int &year, const int &month, const int day) const;
 };
 
