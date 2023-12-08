@@ -7,15 +7,12 @@ int	main(int argc, char **argv)
 		try
 		{
 			BitcoinExchange bex("data.csv");
-			// (void)argv;
-			// bex.printDataBase();
 			bex.exchange(argv[1]);
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
-		
 	}
 	else
 	{

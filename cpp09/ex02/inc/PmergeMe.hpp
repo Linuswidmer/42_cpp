@@ -21,7 +21,8 @@
 # define RESET_PRINT "\033[0m"
 
 # define DEBUG_FJ 0
-# define IS_SORTED 0	
+# define PRINT_SORTED 0
+# define IS_SORTED 0
 # define COMPARE_STD_SORT 0
 
 template <typename C, typename CPair>
@@ -29,7 +30,8 @@ class PmergeMe
 {
 public:
 	// public methods
-	C	sort();
+	C		sort();
+	double	getTime(void) const;
 
 	// Constructors, Assignment, Destructors
 	PmergeMe(const char **argv);
@@ -47,8 +49,10 @@ private:
 	C		_jacobsthal_sequence;
 	size_t	_size;
 	int		_struggler;
+	clock_t	_start, _end;
+
 	
-	// Sorting methods
+	// Sorting steps
 	void	_sortPairsByLargest(CPair &con);
 	void	_splitToPendMainChain(C &mainChain, C &pend);
 	void	_insertionByJacobsthalSequence(C &mainChain, C &pend);
@@ -56,7 +60,7 @@ private:
 	
 	// utils
 	void	_insertToMainChain(int num, C &mainChain);
-	void	_print(const C &con) const;
+	void	_printContainer(const C &con) const;
 	void	_generateJacobsthalSequence(void);
 	void	_checkInput(const char **argv);
 	bool	_isNumeric(const char *str);

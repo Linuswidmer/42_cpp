@@ -15,6 +15,7 @@
 template <typename C, typename CPair>
 C	PmergeMe<C, CPair>::sort()
 {
+	_start = clock();
 	_sortPairsByLargest(_con);
 
 	_splitToPendMainChain(_conMainChain, _conPend);
@@ -22,8 +23,15 @@ C	PmergeMe<C, CPair>::sort()
 	_insertionByJacobsthalSequence(_conMainChain, _conPend);
 
 	_insertStruggler(_conMainChain);
+	_end = clock();
 
 	return (_conMainChain);
+}
+
+template <typename C, typename CPair>
+double	PmergeMe<C, CPair>::getTime(void) const
+{
+	return (static_cast<double>(_end - _start) / CLOCKS_PER_SEC);
 }
 
 /*****************************************************************************/
@@ -65,16 +73,16 @@ void	PmergeMe<C, CPair>::_splitToPendMainChain(C &mainChain, C &pend)
 		}
 		else
 		{
-			mainChain.push_back(_con[i].first);PmergeMe
+			mainChain.push_back(_con[i].first);
 			pend.push_back(_con[i].second);
 		}
 	}
 	if (DEBUG_FJ)
 	{
 		std::cout << "\tMain chain: ";
-		_print(_conMainChain);
+		_printContainer(_conMainChain);
 		std::cout << "\tPend: ";
-		_print(_conPend);
+		_printContainer(_conPend);
 	}
 }
 
@@ -174,7 +182,7 @@ template <typename C, typename CPair>
 void PmergeMe<C, CPair>::_quickSort(CPair &con, int low, int high)
 {
     if (low < high)
-    {PmergeMe
+    {
         int pi = _partition(con, low, high);
         _quickSort(con, low, pi - 1);
         _quickSort(con, pi + 1, high);
@@ -211,7 +219,7 @@ bool	PmergeMe<C, CPair>::_isNumeric(const char *str)
 }
 
 template <typename C, typename CPair>
-void	PmergeMe<C, CPair>::_print(const C &con) const
+void	PmergeMe<C, CPair>::_printContainer(const C &con) const
 {
 	for (size_t i = 0; i < con.size(); i++)
 		std::cout << con[i] << " ";
@@ -224,7 +232,7 @@ void	PmergeMe<C, CPair>::_print(const C &con) const
 
 template <typename C, typename CPair>
 PmergeMe<C, CPair>::PmergeMe(const char **argv)
-	: _size(0), _struggler(-1)
+	: _size(0), _struggler(-1), _start(0), _end(0)
 {
 	_checkInput(argv);
 	_generateJacobsthalSequence();
@@ -250,7 +258,7 @@ PmergeMe<C, CPair>::PmergeMe(const char **argv)
 template <typename C, typename CPair>
 PmergeMe<C, CPair>::PmergeMe(const PmergeMe& copy)
 {
-	this = copy;
+	*this = copy;
 }
 
 template <typename C, typename CPair>
@@ -264,6 +272,8 @@ PmergeMe<C, CPair>& PmergeMe<C, CPair>::operator=(const PmergeMe& other)
 		_jacobsthal_sequence = other._jacobsthal_sequence;
 		_size = other._size;
 		_struggler = other._struggler;
+		_start = other._start;
+		_end = other._end;
 	}
 	return (*this);
 }

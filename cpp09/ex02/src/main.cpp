@@ -52,41 +52,48 @@ void	printElements(int argc, const char **argv, std::vector<int> sorted_vector)
 	std::cout << std::endl;
 }
 
+template <typename C>
+void	printContainer(const C &con)
+{
+	for (size_t i = 0; i < con.size(); i++)
+		std::cout << con[i] << " ";
+	std::cout << std::endl;
+}
+
 int	main(int argc, const char **argv)
 {
 	if ( argc > 1 )
 	{
 		std::vector<int>	sorted_vector;
 		std::deque<int>		sorted_deque;
-		clock_t				start, end;
 		try
 		{
 			/////////////////////////////////////////////////////////////////////
 			// Vector
 			PmergeMe<std::vector<int>, 
 				std::vector<std::pair<int, int> > >	fj_vector( argv + 1);
-			start = clock();
 			sorted_vector = fj_vector.sort();
-			end = clock();
-			std::cout	<< "Time to process a range of " << argc - 1 << " elements with vector: " 
-						<< MAGENTA << static_cast<double>(end - start) / CLOCKS_PER_SEC
+			std::cout	<< "Time to process a range of " << argc - 1 << " elements" 
+						<< " with vector: " << MAGENTA << fj_vector.getTime() 
 						<<  RESET_PRINT << " seconds" << std::endl;
 			if (IS_SORTED)
 				isSorted(argv, sorted_vector);
+			if (PRINT_SORTED)
+				printContainer(sorted_vector);
 			
 			/////////////////////////////////////////////////////////////////////
 			// Deque
 			PmergeMe<std::deque<int>, 
 				std::deque<std::pair<int, int> > >	fj_deque( argv + 1);
-			start = clock();
 			sorted_deque = fj_deque.sort();
-			end = clock();
-			std::cout	<< "Time to process a range of " << argc - 1 << " elements with deque: " 
-						<< MAGENTA << static_cast<double>(end - start) / CLOCKS_PER_SEC 
+			std::cout	<< "Time to process a range of " << argc - 1 << " elements" 
+						<< " with deque: " << MAGENTA << fj_deque.getTime() 
 						<< RESET_PRINT << " seconds" << std::endl;
 			
 			if (IS_SORTED)
 				isSorted(argv, sorted_deque);
+			if (PRINT_SORTED)
+				printContainer(sorted_vector);
 
 			printElements(argc, argv, sorted_vector);
 
@@ -94,6 +101,7 @@ int	main(int argc, const char **argv)
 			// std::sort
 			if (COMPARE_STD_SORT)
 			{
+				clock_t				start, end;
 				std::vector<int>	vec;
 				for (int i = 1; argv[i]; i++) 
 					vec.push_back(std::atoi(argv[i]));
@@ -103,6 +111,8 @@ int	main(int argc, const char **argv)
 				std::cout	<< "Time to process a range of " << argc - 1 << " elements with vector + std::sort: " 
 							<< MAGENTA << static_cast<double>(end - start) / CLOCKS_PER_SEC
 							<< RESET_PRINT << " seconds" << std::endl;
+				if (IS_SORTED)
+					isSorted(argv, vec);
 			}
 		}
 		catch(const std::exception& e)
@@ -114,7 +124,7 @@ int	main(int argc, const char **argv)
 	}
 	else
 	{
-		std::cout << "Usage: " << argv[0] << " <number to sort> " << std::endl;
+		std::cout << "Usage: " << argv[0] << " <num1> <num2> <...>" << std::endl;
 		return (1);
 	}
 }

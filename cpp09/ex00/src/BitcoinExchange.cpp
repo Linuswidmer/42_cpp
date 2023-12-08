@@ -74,7 +74,7 @@ double	BitcoinExchange::_getPriceFromDatabase(const long &date) const
 	else if (it->first == date)
 		return (it->second);
 	else if (it == _dataBase.begin())
-		return (std::cerr << "Error: date before  first entry in  database\n", -1);
+		return (std::cerr << "Error: date before  first entry in database\n", -1);
 	else
 		return (--it)->second;
 }

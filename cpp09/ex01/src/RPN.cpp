@@ -76,14 +76,14 @@ RPN::RPN(void)
 
 RPN::RPN(const RPN& copy)
 {
-	(void)copy;
+	*this = copy;
 }
 
 RPN& RPN::operator=(const RPN& other)
 {
 	if (this != &other)
 	{
-
+		_stack = other._stack;
 	}
 	return (*this);
 }
